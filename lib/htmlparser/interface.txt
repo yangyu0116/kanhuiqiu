@@ -1,0 +1,83 @@
+
+htmlparser库，接口描述
+
+使用方式
+$HtmlParser = new HtmlParser($url);
+$HtmlParser->setCurlTimeoutMs(ItiebaGlobalConfig::OPEN_SHARE_CURL_TIMEOUT_MS);
+$HtmlParser->setCurlRetry(ItiebaGlobalConfig::OPEN_SHARE_CURL_RETRY);
+
+视频网站分析
+$res = $HtmlParser->regularParser($out);
+
+普通网站分析
+$res = $HtmlParser->htmlParser($out);
+
+返回格式：
+
+$res == true时成功
+
+$out = array(
+ 'title' => '',
+ 'content' => '',
+ 'type' => '', // 定义见HPDef.class.php
+ 'link' => 'url',
+ 'extra' => array(
+   'video_pic' => '',
+   'video_swf' => '',
+  ),
+
+异常情况：
+获取错误信息；
+$err = $HtmlParser->getError();
+
+  
+demo代码：
+$HtmlParser = new HtmlParser($url);
+// 设置超时，重试
+$HtmlParser->setCurlTimeoutMs(ItiebaGlobalConfig::OPEN_SHARE_CURL_TIMEOUT_MS);
+$HtmlParser->setCurlRetry(ItiebaGlobalConfig::OPEN_SHARE_CURL_RETRY);
+// 先按照视频内容解析		
+$res = $HtmlParser->regularParser($out);
+if ($res !== false) {
+	$arrShare['type'] = ItbUiInc::$shareType['video'];
+	$arrShare['title'] = $out['title'];
+	$arrShare['content'] = isset($out['content']) ? $out['content'] : '';
+	$arrShare['source'] = $strPartner;
+	$arrShare['extra']['video_pic'] = $out['extra']['video_pic'];
+	$arrShare['extra']['video_swf'] = $out['extra']['video_swf'];
+	$arrShare['succ'] = true;
+	$arrShare['error_no'] = 0;
+	ItbDict::set(ItbUiInc::SHARE_PARSER_DATA, $arrShare);
+	self::statOpenShareApi($arrShare);
+	return true;
+}
+$err = $HtmlParser->getError();
+if ($err !== "") {
+	MyLog::warning(ItbUtil::getLogStr()."getOpenShareData fail ERR:$err");
+}
+
+// 按照普通内容去解析
+$nolyTitle = true;
+$res = $HtmlParser->htmlParser($out, $nolyTitle);
+if ($res !== false) {
+	$arrShare['type'] = ItbUiInc::$shareType['text'];
+	$arrShare['title'] = $out['title'];
+	$arrShare['source'] = $strPartner;
+	$arrShare['extra']['video_pic'] = '';
+	$arrShare['extra']['video_swf'] = '';
+	if (strlen($arrShare['title']) > 0) {
+		$arrShare['succ'] = true;
+		$arrShare['error_no'] = 0;
+		ItbDict::set(ItbUiInc::SHARE_PARSER_DATA, $arrShare);
+		self::statOpenShareApi($arrShare);
+		return true;
+	} else {
+		MyLog::warning(ItbUtil::getLogStr()."getOpenShareData fail ERR title empty ".print_r($arrShare, true));
+	}
+}
+$err = $HtmlParser->getError();
+if ($err !== "") {
+	MyLog::warning(ItbUtil::getLogStr()."getOpenShareData fail ERR:$err");
+}
+  
+  

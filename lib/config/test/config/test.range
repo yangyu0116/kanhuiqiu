@@ -1,0 +1,6 @@
+struct server_t{
+    string ip = ip();
+    int32_t port = range(1, 65535);
+};
+string module;
+server_t server[2];
