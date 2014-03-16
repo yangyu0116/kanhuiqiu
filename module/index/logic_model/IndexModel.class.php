@@ -2,90 +2,81 @@
 class IndexModel extends BaseModel
 {
     /**
-     * ���ݱ���
+     * 数据表名
      **/
     private $dataTableName = '';
 
     /**
-     * ���ݲ�ѯ������ѯ����
+     * 根据查询条件查询动漫
      *
-     * @param $strArea �����ֶ�
-     * @param $strType �����ֶ�
-     * @param $strProp �����ֶ�
-     * @param $strAuthor ������ɸѡ
-     * @param $strStart ��������
-     * @param $strOrder �����ֶ�
-     * @param $intOffset �������ʼλ��
-     * @param $intNum ����Ľ������
-     * @param $intResCount[out] �ܽ�����������ڼ����ҳ 
-     * @return ��Ƶ���
+     * @param $strArea 地区字段
+     * @param $strType 类型字段
+     * @param $strProp 特征字段
+     * @param $strAuthor 按作者筛选
+     * @param $strStart 开播日期
+     * @param $strOrder 排序字段
+     * @param $intOffset 结果的起始位置
+     * @param $intNum 所需的结果条数
+     * @param $intResCount[out] 总结果条数，用于计算分页 
+     * @return 视频结果
      **/
     public function find_list($strArea, $strType, $strProp, $strAuthor, $strStart, $strOrder, $intOffset, $intNum, &$intResCount, $is_ipad = false)
     {
-		echo 'kanhuiqiu by yangyu@sina.cn';exit();   //������������debug������������
+		$cl = new SphinxClient ();
+		$cl->SetServer ( '127.0.0.1', 9312);
+		//以下设置用于返回数组形式的结果
+		$cl->SetArrayResult ( true );
 
+		/*
+		//ID的过滤
+		$cl->SetIDRange(3,4);
 
-		$index_field = array('video_ids');
-        $option = array('SQL_CALC_FOUND_ROWS');
+		//sql_attr_uint等类型的属性字段，需要使用setFilter过滤，类似SQL的WHERE group_id=2
+		$cl->setFilter('group_id',array(2));
 
-        if (empty($strArea)) {
-            $strArea = "all";
-        }
-        if (empty($strType)) {
-            $strType = "all";
-        }
-        if (empty($strProp)) {
-            $strProp = "all";
-        }
-        if (empty($strStart)) {
-            $strStart = "all";
-        }
+		//sql_attr_uint等类型的属性字段，也可以设置过滤范围，类似SQL的WHERE group_id2>=6 AND group_id2<=8
+		$cl->SetFilterRange('group_id2',6,8);
+		*/
 
-		$index_key = $strOrder ."_type_". $strType ."_area_". $strArea ."_start_". $strStart ."_prop_". $strProp;
-		$select_conds[] = "index_id = '". $index_key."'";
+		//取从头开始的前20条数据，0,20类似SQl语句的LIMIT 0,20
+		$cl->SetLimits(0,20);
 
-		$sa = new SQLAssember($this->db);
-        $sql = $sa->getSelect($this->index_tablename,$index_field,$select_conds,$option);
-        $this->debug_sql($sql);
+		$cl->SetSortMode (SPH_SORT_ATTR_DESC, 'vid' );
+		//$cl->setMatchMode (1);
+		//在做索引时，没有进行 sql_attr_类型 设置的字段，可以作为“搜索字符串”，进行全文搜索
 
+		if (isset($_GET['wd'])){
+			$word = $_GET['wd'];
+		}else{
+			$word = '官方';
+		}
+		$res = $cl->Query ($word, "*" );    //"*"表示在所有索引里面同时搜索，"索引名称（例如test或者test,test2）"则表示搜索指定的
 
-		$first_result = $this->do_query($sql, $res_num);
+		//如果需要搜索指定全文字段的内容，可以使用扩展匹配模式：
+		//$cl->SetMatchMode(SPH_MATCH_EXTENDED);
 
-		if (($res_num != 0) && ($first_result != false)) {
+		if ($res['total'] == 0){
+			$cl->SetSortMode (SPH_SORT_RELEVANCE);
+			$cl->setMatchMode (1);
+			$res = $cl->Query ($word, "*" );    //"*"表示在所有索引里面同时搜索，"索引名称（例如test或者test,test2）"则表示搜索指定的
+			//return false;
+		}
+		
+		$id_arr = array();
+		foreach ($res['matches'] as $r){
+			$id_arr[] = $r['id'];
+		}
+		$id_str = implode(',',$id_arr);
+		$sql = 'select title,url,pic,year,date from tbl_video where id in ('.$id_str.') ORDER BY find_in_set(id, "'.$id_str.'")';
+		$res = $this->do_query($sql);
 
-            $id_array = explode(',', $first_result[0]['video_ids']);
-			$intResCount = count($id_array);
-			//$count = substr_count($first_result[0]['video_ids'], ',')+1;
-
-			//ѡȡ����
-			$fields = array('title', 'url', 'img_url', 'poster_url', 'author',
-                        'area', 'type', 'prop', 'start', 'seq', 'finish',
-                        'pubtime', 'intro', 's_intro', 'hot', 'sites', 'works_id');
-
-            if ($intOffset >= $intResCount) {
-                $intResCount = 0;
-                return false;
-            }
-            for ($i = 0; $i < $intNum; $i++) {
-                if ($intOffset + $i < $intResCount) {    
-                    $id_list[] = $id_array[$intOffset+$i];
-                } else {
-                    break;
-                }
-            }
-            $sec_conds[] = "works_id in ('" .implode('\',\'', $id_list) ."')";
-			
-            $sec_appends = array(sprintf("ORDER BY find_in_set(works_id, '%s')", implode(',', $id_list)));
-
-            $sql = $sa->getSelect($this->dataTableName,$fields,$sec_conds,$option,$sec_appends);
-            $this->debug_sql($sql);
-
-            $finial_result = $this->do_query($sql, $res);
-
-            return $finial_result;
-        } else {
-            return false;
-        }
+//————————————————debug——————————————————————————
+echo '<pre>';
+print_r ($res);
+echo '</pre>';
+exit();
+//————————————————debug——————————————————————————
+		exit;
 
     }
 }

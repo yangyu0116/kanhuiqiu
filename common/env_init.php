@@ -1,22 +1,11 @@
 <?php
-    
-    /**
-     * initial app's environment 
-     *
-     * initial app's environment, this file is auto required by
-     * bingo/framework/common/common.conf.php which is auto 
-     * prepend before every request.
-     * @package bingo/config
-     * @author  liubin01@baidu.com 
-     */
-    
     define('DB_PATH',               LIB_PATH.'/db/');
     define('HTTPPROXY_PATH',        LIB_PATH.'/http_proxy/');
     define('NSHEAD_CLIENT_PATH',    LIB_PATH.'/nshead_client/');
     define('TIMER_PATH',            LIB_PATH.'/timer/');
     define('STRING_PATH',           LIB_PATH.'/string_utils');
     define('UCRYPT_PATH',           LIB_PATH.'/ucrypt');
-	define('TIME_FORMATTER_PATH',   LIB_PATH.'/time_formatter');
+	define('CORESEEK_PATH',			LIB_PATH.'/coreseek');
 
     define('INDEX_MODULE_PATH',         MODULE_PATH.'index/logic_model/');
     define('INDEX_FLOW_PATH',           MODULE_PATH.'index/logic_flow/');
@@ -43,6 +32,7 @@
     .':'.STRING_PATH
     .':'.INDEX_FLOW_PATH
     .':'.INDEX_MODULE_PATH
+	.':'.CORESEEK_PATH
     ); 
 
     require_once SMARTY_PATH.'/Smarty.class.php';
