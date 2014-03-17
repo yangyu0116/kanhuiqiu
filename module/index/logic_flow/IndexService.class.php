@@ -25,7 +25,7 @@ class IndexService
     {
         $m = new IndexModel(IndexConfig::$cache_config, $this->storage->db, null); 
 
-        $arrList = $m->find_list($intResCount);
+        $arrList = $m->find_list($lstParam, $intOffset, $intNum, $intResCount);
 
         if ($arrList === false) {
             CLogger::warning('ComicListModel find_list fail', GlobalConfig::BINGO_LOG_ERRNO, 

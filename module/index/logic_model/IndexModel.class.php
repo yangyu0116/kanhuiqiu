@@ -8,19 +8,13 @@ class IndexModel extends BaseModel
 
     /**
      * 根据查询条件查询动漫
-     *
-     * @param $strArea 地区字段
-     * @param $strType 类型字段
-     * @param $strProp 特征字段
-     * @param $strAuthor 按作者筛选
-     * @param $strStart 开播日期
      * @param $strOrder 排序字段
      * @param $intOffset 结果的起始位置
      * @param $intNum 所需的结果条数
      * @param $intResCount[out] 总结果条数，用于计算分页 
      * @return 视频结果
      **/
-    public function find_list($strArea, $strType, $strProp, $strAuthor, $strStart, $strOrder, $intOffset, $intNum, &$intResCount, $is_ipad = false)
+    public function find_list($lstParam, $intOffset, $intNum, &$intResCount)
     {
 		$cl = new SphinxClient ();
 		$cl->SetServer ( '127.0.0.1', 9312);
@@ -68,7 +62,7 @@ class IndexModel extends BaseModel
 		}
 		$id_str = implode(',',$id_arr);
 		$sql = 'select title,url,pic,year,date from tbl_video where id in ('.$id_str.') ORDER BY find_in_set(id, "'.$id_str.'")';
-		$res = $this->do_query($sql);
+		$res = $this->do_query($sql, $intNum);
 
 //————————————————debug——————————————————————————
 echo '<pre>';

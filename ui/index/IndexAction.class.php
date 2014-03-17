@@ -11,11 +11,13 @@ class IndexAction extends Action
         $timer = new Timer(true);
         $timer->start();
 
-        $m = new IndexService();
+        $service = new IndexService();
 
         $hc_list = 0;
         $res_num_list = 0;
-        $video_list = $m->find_list($m, $context, $res_num_list, $hc_list);
+		$total_num = 0;
+		$offset = 0;
+        $video_list = $service->find_list($service, $offset, $res_num_list, $total_num, $hc_list);
 
         $urlparams = $context->getProperty('urlparams');
 
