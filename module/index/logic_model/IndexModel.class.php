@@ -53,6 +53,9 @@ class IndexModel extends BaseModel
 			$cl->SetSortMode (SPH_SORT_RELEVANCE);
 			$cl->setMatchMode (1);
 			$res = $cl->Query ($word, "*" );    //"*"表示在所有索引里面同时搜索，"索引名称（例如test或者test,test2）"则表示搜索指定的
+			if ($res['total'] == 0){
+				return false;
+			}
 			//return false;
 		}
 		
