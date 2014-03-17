@@ -65,7 +65,7 @@ class IndexModel extends BaseModel
 		}
 		$id_str = implode(',',$id_arr);
 		$sql = 'select title,url,pic,year,date from tbl_video where id in ('.$id_str.') ORDER BY find_in_set(id, "'.$id_str.'")';
-		$res = $this->do_query($sql, $intNum);
+		$res = $this->do_sql($sql);
 
 //————————————————debug——————————————————————————
 echo '<pre>';
