@@ -9,6 +9,8 @@
 
     define('INDEX_MODULE_PATH',         MODULE_PATH.'index/logic_model/');
     define('INDEX_FLOW_PATH',           MODULE_PATH.'index/logic_flow/');
+    define('SEARCH_MODULE_PATH',         MODULE_PATH.'search/logic_model/');
+    define('SEARCH_FLOW_PATH',           MODULE_PATH.'search/logic_flow/');
 
 
     define('SMARTY_PATH',           LIB_PATH.'/smarty/libs');
@@ -28,11 +30,13 @@
     .':'.DB_PATH
     .':'.HTTPPROXY_PATH
 //	.':'.TIME_FORMATTER_PATH
-//    .':'.TIMER_PATH
+    .':'.TIMER_PATH
     .':'.STRING_PATH
+	.':'.CORESEEK_PATH
     .':'.INDEX_FLOW_PATH
     .':'.INDEX_MODULE_PATH
-	.':'.CORESEEK_PATH
+	.':'.SEARCH_FLOW_PATH
+    .':'.SEARCH_MODULE_PATH
     ); 
 
     require_once SMARTY_PATH.'/Smarty.class.php';

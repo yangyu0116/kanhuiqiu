@@ -58,7 +58,7 @@ class SimpleTemplate extends Smarty
                 $this->assign($key, $value);
             }
         }
-
+		/*
         //抽样配置
         if (array_key_exists($tpl_name, SampleConfig::$SAMPLE_CONFIG)) 
         {
@@ -92,6 +92,7 @@ class SimpleTemplate extends Smarty
                 } 
             }
         }
+		*/
         
         //非抽样，直接显示
         $this->display($tpl_name); 

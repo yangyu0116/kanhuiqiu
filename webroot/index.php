@@ -1,4 +1,5 @@
 <?php
+
 	$ROOT_DIR = dirname($_SERVER['DOCUMENT_ROOT']);
 	require_once($ROOT_DIR.'/framework/common/env_init.php');
 

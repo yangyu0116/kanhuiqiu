@@ -7,6 +7,7 @@ BingoUtils::$arrIncludeBuffer = array (
   'HooksConfig' => '/home/video/northwood/kanhuiqiu_com/kanhuiqiu/framework/common/../../config//HooksConfig.class.php',
   'IDCConfig' => '/home/video/northwood/kanhuiqiu_com/kanhuiqiu/framework/common/../../config//IDCConfig.class.php',
   'IndexConfig' => '/home/video/northwood/kanhuiqiu_com/kanhuiqiu/framework/common/../../config//IndexConfig.class.php',
+  'SearchConfig' => '/home/video/northwood/kanhuiqiu_com/kanhuiqiu/framework/common/../../config//SearchConfig.class.php',
   'Antispam' => '/home/video/northwood/kanhuiqiu_com/kanhuiqiu/framework/common/../../common//Antispam.class.php',
   'ApiBaseAction' => '/home/video/northwood/kanhuiqiu_com/kanhuiqiu/framework/common/../../common//ApiBaseAction.class.php',
   'BaseModel' => '/home/video/northwood/kanhuiqiu_com/kanhuiqiu/framework/common/../../common//BaseModel.class.php',
@@ -35,8 +36,10 @@ BingoUtils::$arrIncludeBuffer = array (
   'Timer' => '/home/video/northwood/kanhuiqiu_com/kanhuiqiu/framework/common/../../lib//timer//Timer.class.php',
   'TimerGroup' => '/home/video/northwood/kanhuiqiu_com/kanhuiqiu/framework/common/../../lib//timer//TimerGroup.class.php',
   'StringUtils' => '/home/video/northwood/kanhuiqiu_com/kanhuiqiu/framework/common/../../lib//string_utils/StringUtils.class.php',
+  'SphinxClient' => '/home/video/northwood/kanhuiqiu_com/kanhuiqiu/framework/common/../../lib//coreseek/SphinxClient.class.php',
   'IndexService' => '/home/video/northwood/kanhuiqiu_com/kanhuiqiu/framework/common/../../module/index/logic_flow//IndexService.class.php',
   'IndexModel' => '/home/video/northwood/kanhuiqiu_com/kanhuiqiu/framework/common/../../module/index/logic_model//IndexModel.class.php',
-  'SphinxClient' => '/home/video/northwood/kanhuiqiu_com/kanhuiqiu/framework/common/../../lib//coreseek/SphinxClient.class.php',
+  'SearchService' => '/home/video/northwood/kanhuiqiu_com/kanhuiqiu/framework/common/../../module/search/logic_flow//SearchService.class.php',
+  'SearchModel' => '/home/video/northwood/kanhuiqiu_com/kanhuiqiu/framework/common/../../module/search/logic_model//SearchModel.class.php',
 );
 ?>

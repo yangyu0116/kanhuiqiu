@@ -18,10 +18,16 @@
 
 	/*
 	路由配置注意事项：
-		1, 避免在url中使用如下关键字: verify, vcode, cgi-bin/genimg   //防止与用户登录的验证码模块冲突
 	*/
 
     ActionControllerConfig::$config = array(
+	    //搜索结果页面
+        '/^\/s/' => array(
+                            'search',
+                            UI_PATH.'/search/SearchAction.class.php',
+                            null,
+                            null
+        ),
         //视频首页
         '/^(\/$|\/\?)/' => array(
                             'index',
