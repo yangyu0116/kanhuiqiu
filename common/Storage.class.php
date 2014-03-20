@@ -81,6 +81,7 @@ class Storage
                 CLogger::fatal('all database down!', GlobalConfig::BINGO_LOG_ERRNO);
             }
         }
+	$this->db->query('set names utf8');
         return $this->db;
     }
 

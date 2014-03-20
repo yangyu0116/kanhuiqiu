@@ -12,7 +12,6 @@ class IndexAction extends Action
         $timer->start();
 
         $service = new IndexService();
-
         $hc_list = 0;
         $res_num_list = 0;
 		$total_num = 0;
