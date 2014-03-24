@@ -6,18 +6,35 @@
 
 class SearchAction extends Action
 {
+	
+	private function parse_url($context)
+    {
+		$urlparams = array();
+		$request_uri = parse_url($_SERVER['REQUEST_URI']);
+		parse_str($request_uri['query']);
+
+		$urlparams['wd'] = $wd;
+		
+		$context->setProperty('urlparams', $urlparams);
+	}
+
     public function execute($context, $actionParam = null)
     {
         $timer = new Timer(true);
         $timer->start();
 
+        $context->setProperty('urlparams', $urlparams);
+		$this->parse_url($context);
+        $urlparams = $context->getProperty('urlparams');
+
         $service = new SearchService();
+
 
         $hc_list = 0;
         $res_num_list = 0;
 		$total_num = 0;
 		$offset = 0;
-        $video_list = $service->find_list($service, $offset, $res_num_list, $total_num, $hc_list);
+        $video_list = $service->find_list($urlparams, $offset, $res_num_list, $total_num, $hc_list);
 
         $urlparams = $context->getProperty('urlparams');
 

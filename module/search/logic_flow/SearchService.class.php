@@ -28,7 +28,7 @@ class SearchService
         $arrList = $m->find_list($lstParam, $intOffset, $intNum, $intResCount);
 
         if ($arrList === false) {
-            CLogger::warning('ComicListModel find_list fail', GlobalConfig::BINGO_LOG_ERRNO, 
+            CLogger::warning('SearchModel find_list fail', GlobalConfig::BINGO_LOG_ERRNO, 
                 array('params' => $lstParam, 'offset' => $intOffset, 'num' => $intNum, 'res_count' => $intResCount));
             return false;
         }

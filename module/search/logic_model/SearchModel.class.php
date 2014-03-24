@@ -16,8 +16,8 @@ class SearchModel extends BaseModel
      **/
     public function find_list($lstParam, $intOffset, $intNum, &$intResCount)
     {
-		if (isset($_GET['wd'])){
-			$word = $_GET['wd'];
+		if (isset($lstParam['wd'])){
+			$word = $lstParam['wd'];
 		}else{
 			$word = '比赛集锦';
 		}
