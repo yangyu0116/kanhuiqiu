@@ -33,16 +33,10 @@ class SearchService
             return false;
         }
 
-        //将列表处理成数组
-        foreach ($arrList as &$item) {
-            $item['author'] = $this->array_truncate($this->csv2array($item['author']), 12);
-            $item['characters'] = $this->array_truncate($this->csv2array($item['characters']), 12);
-            $item['type'] = $this->array_truncate($this->csv2array($item['type']), 12);
-        }
 
         //存入cache
-        $this->cache_set($dataCacheKey, $arrList);
-        $this->cache_set($cntCacheKey, $intResCount);
+        //$this->cache_set($dataCacheKey, $arrList);
+        //$this->cache_set($cntCacheKey, $intResCount);
 
         //未命中cache
         $hc = 0;

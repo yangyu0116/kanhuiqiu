@@ -23,20 +23,28 @@
     define('CSS_PATH',              'http://'.$_SERVER['HTTP_HOST'].'/static/css');
     define('IMAGE_PATH',            'http://'.$_SERVER['HTTP_HOST'].'/static/img');
     define('CACHEKEYSEPARATOR', '_');
+
+	//判断系统分隔符
+	if (PATH_SEPARATOR == ':'){
+		$path_separator = ':';
+	}else{
+		$path_separator = ':.;';
+	}
+
     ini_set('include_path', ini_get('include_path')
-    .':'.CONFIG_PATH
-    .':'.COMMON_PATH
-    .':'.UCRYPT_PATH
-    .':'.DB_PATH
-    .':'.HTTPPROXY_PATH
-//	.':'.TIME_FORMATTER_PATH
-    .':'.TIMER_PATH
-    .':'.STRING_PATH
-	.':'.CORESEEK_PATH
-    .':'.INDEX_FLOW_PATH
-    .':'.INDEX_MODULE_PATH
-	.':'.SEARCH_FLOW_PATH
-    .':'.SEARCH_MODULE_PATH
+    .$path_separator.CONFIG_PATH
+    .$path_separator.COMMON_PATH
+    .$path_separator.UCRYPT_PATH
+    .$path_separator.DB_PATH
+    .$path_separator.HTTPPROXY_PATH
+//	.$path_separator.TIME_FORMATTER_PATH
+    .$path_separator.TIMER_PATH
+    .$path_separator.STRING_PATH
+	.$path_separator.CORESEEK_PATH
+    .$path_separator.INDEX_FLOW_PATH
+    .$path_separator.INDEX_MODULE_PATH
+	.$path_separator.SEARCH_FLOW_PATH
+    .$path_separator.SEARCH_MODULE_PATH
     ); 
 
     require_once SMARTY_PATH.'/Smarty.class.php';

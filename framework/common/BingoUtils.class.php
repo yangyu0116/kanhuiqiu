@@ -99,15 +99,21 @@ class BingoUtils
         }
         else
         {
-            $arrIncludePath = explode(':', ini_get('include_path'));
+			//ÅÐ¶ÏÏµÍ³·Ö¸ô·û
+			if (PATH_SEPARATOR == ':'){
+				$arrIncludePath = explode(':', ini_get('include_path'));
+			}else{
+				$arrIncludePath = explode(':.;', ini_get('include_path'));
+			}
+            
             self::$arrIncludeBuffer = ClassesFinder::findClasses($arrIncludePath, false);
         }
 
         $strIncludeBuffer = "<?php\nBingoUtils::\$arrIncludeBuffer = ".var_export(self::$arrIncludeBuffer, true).";\n?>\n";
 
-        if (file_put_contents($strTmpCacheFileName, $strIncludeBuffer, LOCK_EX) > 0) {
-            rename($strTmpCacheFileName, $strCacheFileName);
-        }
+        //if (file_put_contents($strTmpCacheFileName, $strIncludeBuffer, LOCK_EX) > 0) {
+        //    rename($strTmpCacheFileName, $strCacheFileName);
+        //}
     }
 
     public static function quickLoadClass($strClassName)
