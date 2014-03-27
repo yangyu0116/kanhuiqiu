@@ -7,7 +7,6 @@
 	 * someone could use this action in logic flow.
 	 *
 	 * @package bingo/framework
-	 * @author  liubin01@baidu.com
    	 */
 
 	class ActionChain extends Action {

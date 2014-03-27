@@ -9,9 +9,12 @@
 
     define('INDEX_MODULE_PATH',         MODULE_PATH.'index/logic_model/');
     define('INDEX_FLOW_PATH',           MODULE_PATH.'index/logic_flow/');
+
     define('SEARCH_MODULE_PATH',         MODULE_PATH.'search/logic_model/');
     define('SEARCH_FLOW_PATH',           MODULE_PATH.'search/logic_flow/');
 
+    define('USER_MODULE_PATH',         MODULE_PATH.'user/logic_model/');
+    define('USER_FLOW_PATH',           MODULE_PATH.'user/logic_flow/');
 
     define('SMARTY_PATH',           LIB_PATH.'/smarty/libs');
     define('SMARTY_TEMPLATE_DIR',   TEMPLATE_PATH);
@@ -43,6 +46,8 @@
 	.$path_separator.CORESEEK_PATH
     .$path_separator.INDEX_FLOW_PATH
     .$path_separator.INDEX_MODULE_PATH
+	.$path_separator.SEARCH_FLOW_PATH
+    .$path_separator.SEARCH_MODULE_PATH
 	.$path_separator.SEARCH_FLOW_PATH
     .$path_separator.SEARCH_MODULE_PATH
     ); 

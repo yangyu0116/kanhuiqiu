@@ -6,7 +6,6 @@
 	 * Generally speaking, it is just the same as MVC's C.
 	 * 
 	 * @package bingo/framework
-	 * @author  liubin01@baidu.com
      */
 
 	class ActionController extends Action {

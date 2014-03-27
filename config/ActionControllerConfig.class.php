@@ -9,7 +9,6 @@
 	 * the value of the array urlMapping is the handler action of the reg pattern
 	 *
 	 * @package bingo/config
-	 * @author  liubin01@baidu.com
 	 */
 
 	class ActionControllerConfig {

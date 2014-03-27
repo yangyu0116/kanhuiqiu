@@ -3,7 +3,6 @@
  * IDC config
  *
  * @package bingo/config
- * @author  zhangdongjin@baidu.com
  */
 
 class IDCConfig

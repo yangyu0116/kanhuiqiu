@@ -1,7 +1,6 @@
 <?php
 /**
  * @package bingo/config
- * @author  zhangdongjin@baidu.com
  *
  * Bingo支持三种autoload模式：
  *

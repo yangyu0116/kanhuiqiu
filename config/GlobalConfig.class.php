@@ -5,7 +5,6 @@
 	 *
 	 * config GlobalConfig::$rootAction and GlobalConfig::$initActions
 	 * @package bingo/config
-	 * @author  liubin01@baidu.com
 	 */
 	class GlobalConfig {
 

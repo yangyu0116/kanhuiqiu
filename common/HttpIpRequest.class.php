@@ -1,8 +1,6 @@
 <?php
 /**
  * 获取客户端IP库
- * @author xuliqiang <xuliqiang@baidu.com>
- * @since 2009-12-23
  * @example 
  * $strIp = HttpIpRequest::getConnectIp();
  * $strIp = HttpIpRequest::getUserClientIp();

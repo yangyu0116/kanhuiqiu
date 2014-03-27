@@ -7,8 +7,7 @@
 
 /**
  * @file Session.class.php
- * @author wujian01(wujian01@baidu.com)
- * @date 2011-11-30 
+ * @author yangyu(yangyu@baidu.com)
  * @brief 用户登录服务
  **/
 class Session
@@ -24,41 +23,48 @@ class Session
 
 	public static function checkUserLogin()
         {
-        $uss = array();
-		$pass_res = Passport::checkUserLogin();
+        $userinfo = array();
+
+		$a_pwd = md5($a_pwd);
+		$ip = get_ip();
+		$sql = "SELECT * FROM `admin_accounts` WHERE (`project`='".PROJECT."' OR `project`='manager') AND `account`='$a_name' LIMIT 1";
+		$login_info = $dbs->getRow($sql);
 
         //ret url
         $uss['url'] = sprintf('http://%s%s', $_SERVER['SERVER_NAME'], $_SERVER['REQUEST_URI']);
 
-        //host
-        $uss['host'] = GlobalConfig::$passport_host;
-        if ($pass_res === false) {
-            $uss['islogin'] = false;
-            $uss['uname'] = '';
-            $uss['uid']   = '';
-            $uss['email'] = '';
-            $uss['phone'] = '';
-            $uss['isspace'] = false;
-            $uss['global_data'][0] = 0;
-        }
-        else{
-			//$pass_res['uid'] = 608709854;
-            $uss['islogin'] = true;
-            $uss['uname'] = $pass_res['un'];
-            $uss['uid']   = self::api_encode_uid($pass_res['uid']);
-            $uss['email'] = $pass_res['email'];
-            $uss['phone'] = $pass_res['phone'];
-            $uss['global_data'] = $pass_res['global_data'];
-			if ((ord($uss['global_data'][0]) & 0x20) != 0){
-                $uss['isspace'] = true;
-            }
-            else{
-                $uss['isspace'] = false;
-            }
-        }
+		//错误登陆次数限制
+		$time_30 = strtotime($login_info["this_time"])+1800; //30分钟前
+		if (($login_info["times_limit"] >= $times_limit) && ($time_30 > time()))
+		{
+			echo "<script type='text/javascript'>alert('重试登陆次数限制已到,30分钟内此帐号不可以登陆！');window.close();</script>";
+			exit;
+		}
+		else
+		{
+			if ($a_pwd == $login_info["pwd"]) //登陆成功
+			{
+				session_start();
+				$_SESSION["admin_account"] = $login_info["account"];
+				$_SESSION["admin_name"] = $login_info["name"];
+				$_SESSION["admin_project"] = $login_info["project"];
+				$_SESSION["admin_rights"] = $login_info["rights"];
+				$_SESSION["admin_user"] = $login_info["admin_user"];
+				//登陆记录
+				$sql = "UPDATE `admin_accounts` SET `last_time`=`this_time`, `last_ip`=`this_ip`, `this_time`=NOW(), `this_ip`='$ip', `times_limit`=0 WHERE `id`=".$login_info["id"]." LIMIT 1";
+				$db->query($sql);
+				header("location:".PROJECT_DIR);
+				exit;
+			}
+			else
+			{
+				//限制IP登陆重试次数
+				$sql = "UPDATE `admin_accounts` SET `this_time`=NOW(),`this_ip`='$ip',`times_limit`=(`times_limit`+1) WHERE `id`=".$login_info["id"]." LIMIT 1";
+				$db->query($sql);
+				echo "<script type='text/javascript'>alert('用户名或密码错误,你还可以重试".($times_limit-$login_info["times_limit"])."次！');window.history.back();</script>";
+			}
+		}
 
-		//测试信息
-		$uss = array('islogin' => 1, 'uid' => '1077795095', 'uname' => '幸存者201311');
 
         return $uss;
     }    

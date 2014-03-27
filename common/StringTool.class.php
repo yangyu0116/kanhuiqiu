@@ -1,8 +1,6 @@
 <?php
 /** 
 * @file StringTool.class.php
-* @author interma
-* @date 2010-03-18
  */
 
 class StringTool

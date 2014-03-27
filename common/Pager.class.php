@@ -2,8 +2,6 @@
 /** 
  * @file Pager.class.php
  * @brief ·­Ò³Ä£¿é
- * @author interma
- * @date 2010-03-18
  */
 class Pager 
 {

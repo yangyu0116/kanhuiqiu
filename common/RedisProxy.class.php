@@ -1,13 +1,7 @@
 <?php 
-/***************************************************************************
- * 
- * Copyright (c) 2012 Baidu.com, Inc. All Rights Reserved
- * 
- **************************************************************************/
 /**
  * @file RedisProxy.class.php
  * @author yangyu(yangyu@baidu.com)
- * @date 2013-06-01
  * @brief redis²Ù×÷
  **/
 

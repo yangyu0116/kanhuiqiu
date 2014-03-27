@@ -3,8 +3,6 @@
  * @file SimpleTemplate.class.php
  * @brief 
  * 对Smarty模板的简单封装。
- * @author interma
- * @date 2010-03-18
  */
 class SimpleTemplate extends Smarty
 {   

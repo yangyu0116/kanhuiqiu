@@ -7,7 +7,6 @@
      * all the main operations, expose operations to developers.
 	 *
 	 * @package bingo/framework
-	 * @author  liubin01@baidu.com 
 	 */
 
 	abstract class Action {

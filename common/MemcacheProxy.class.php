@@ -1,10 +1,7 @@
 <?php
 /**
  * memcache代理类
- * 
- * @copyright	(c) 2013, Baidu  All rights reserved.
  * @author 		杨宇 <yangyu@baidu.com>
- * @version		2013-07-31
  * @package		MemcacheProxy
  */
 

@@ -1,8 +1,6 @@
 <?php
 /**
  * @abstract http请求类
- * @author yanyugang<yanyugang@baidu.com>
- * @since 2010-12-15
  */
 class DBHttpProxy
 {
