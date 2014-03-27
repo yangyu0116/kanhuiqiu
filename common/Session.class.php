@@ -21,14 +21,13 @@ class Session
 		return $sid;
 	}
 
-	public static function checkUserLogin()
+	public static function check_login()
         {
         $userinfo = array();
 
 		$a_pwd = md5($a_pwd);
 		$ip = get_ip();
-		$sql = "SELECT * FROM `admin_accounts` WHERE (`project`='".PROJECT."' OR `project`='manager') AND `account`='$a_name' LIMIT 1";
-		$login_info = $dbs->getRow($sql);
+		//$login_info = $dbs->getRow($sql);	获取用户信息
 
         //ret url
         $uss['url'] = sprintf('http://%s%s', $_SERVER['SERVER_NAME'], $_SERVER['REQUEST_URI']);
