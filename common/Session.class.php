@@ -40,9 +40,6 @@ class Session
 				session_start();
 				$_SESSION["admin_account"] = $login_info["account"];
 				$_SESSION["admin_name"] = $login_info["name"];
-				$_SESSION["admin_project"] = $login_info["project"];
-				$_SESSION["admin_rights"] = $login_info["rights"];
-				$_SESSION["admin_user"] = $login_info["admin_user"];
 				//µÇÂ½¼ÇÂ¼
 				$sql = "UPDATE `admin_accounts` SET `last_time`=`this_time`, `last_ip`=`this_ip`, `this_time`=NOW(), `this_ip`='$ip', `times_limit`=0 WHERE `id`=".$login_info["id"]." LIMIT 1";
 				$db->query($sql);
