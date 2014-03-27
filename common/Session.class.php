@@ -1,10 +1,4 @@
 <?php
-/***************************************************************************
- * 
- * Copyright (c) 2011 Baidu.com, Inc. All Rights Reserved
- * 
- **************************************************************************/
-
 /**
  * @file Session.class.php
  * @author yangyu(yangyu@baidu.com)
