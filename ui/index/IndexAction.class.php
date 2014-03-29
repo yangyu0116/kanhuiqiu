@@ -11,6 +11,16 @@ class IndexAction extends Action
         $timer = new Timer(true);
         $timer->start();
 
+		$userinfo = Session::check_login();
+//！！！！！！！！！！！！！！！！debug！！！！！！！！！！！！！！！！！！！！！！！！！！
+echo '<pre>';
+var_dump ($userinfo);
+echo '</pre>';
+echo '<pre>';
+var_dump ($_COOKIE);
+echo '</pre>';
+exit();
+//！！！！！！！！！！！！！！！！debug！！！！！！！！！！！！！！！！！！！！！！！！！！
         $service = new IndexService();
         $hc_list = 0;
         $res_num_list = 0;
@@ -19,12 +29,7 @@ class IndexAction extends Action
         $video_list = $service->find_list($service, $offset, $res_num_list, $total_num, $hc_list);
 
         $urlparams = $context->getProperty('urlparams');
-//！！！！！！！！！！！！！！！！debug！！！！！！！！！！！！！！！！！！！！！！！！！！
-echo '<pre>';
-var_dump ($video_list);
-echo '</pre>';
-exit();
-//！！！！！！！！！！！！！！！！debug！！！！！！！！！！！！！！！！！！！！！！！！！！
+
 
         $pager = new Pager($urlprefix, $res_num_index, $urlparams['pn'], $this->rn);
         $pagebar = $pager->get_html();

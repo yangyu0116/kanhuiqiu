@@ -28,16 +28,19 @@
         // bingo自身log所用的errno
         // 所有wf日志都用相同的errno
         const BINGO_LOG_ERRNO = 1000;
-	const DATABASE_TIMEOUT = 1;
+		const DATABASE_TIMEOUT = 1;
         
         public static $default_url;
         public static $default_host;
+
+		public static $timestamp;
+		public static $strhash;
 	}
 
 	/**
 	 * tell the framework whether open the debug feather or not
 	 */
-	GlobalConfig::$isDebug = true;
+	GlobalConfig::$isDebug = false;
 
 	GlobalConfig::$hookBeforeRequestProcessSwitch = true;
 	GlobalConfig::$hookAfterRequestProcessSwitch  = true;
@@ -96,9 +99,11 @@
 	//memcached
     GlobalConfig::$redis = array(
 	   'host' => '127.0.0.1',
-	   'port'=>'11211'
+	   'port'=>'6379'
     );
     
     GlobalConfig::$default_url = 'http://www.kanhuiqiu.com/error.html';
-    GlobalConfig::$default_host = 'http://www.kanhuiqiu.com';
+    GlobalConfig::$timestamp = 'http://www.kanhuiqiu.com';
 
+	GlobalConfig::$timestamp = time();
+	GlobalConfig::$strhash = 'khq_yy';

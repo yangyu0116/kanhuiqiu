@@ -1,26 +1,40 @@
 <?php
 /**
  * @file Session.class.php
- * @author yangyu(yangyu@baidu.com)
- * @brief 用户登录服务
  **/
 class Session
 {
-	public static function api_encode_uid($uid) {
-		$sid = ($uid & 0x0000ff00) << 16;
-		$sid += (($uid & 0xff000000) >> 8) & 0x00ff0000;
-		$sid += ($uid & 0x000000ff) << 8;
-		$sid += ($uid & 0x00ff0000) >> 16;
-		$sid ^= 282335;
-		return $sid;
-	}
+	public static $cookie_pre = 'khq_';
 
-	public static function check_login()
-        {
+	public static function check_login(){
+
         $userinfo = array();
 
-		$a_pwd = md5($a_pwd);
-		$ip = get_ip();
+		//$login_user_info = self::get_cookie_var('login_user');
+		$cookie_user_info = self::get_cookie_var('user');
+
+		$uid = $uname = '';
+		if (!empty($cookie_user_info)){
+			list($uid,$uname) = explode("\t", self::str_code($cookie_user_info,'DECODE'));
+			//$decode_cookie_user_info = self::_decrypt($cookie_user_info);
+		}
+
+		if (empty($uid)){
+			$uid = GlobalConfig::$timestamp.rand(0,1000);
+			$cookie_val = self::str_code($uid,'ENCODE');
+			self::set_cookie('user', $cookie_val);
+		}
+
+		$userinfo['uid'] = $uid;
+		$userinfo['uname'] = $uname;
+
+        return $userinfo;
+    }  
+
+	public static function login(){
+
+        $userinfo = array();
+
 		//$login_info = $dbs->getRow($sql);	获取用户信息
 
         //ret url
@@ -57,6 +71,118 @@ class Session
 
 
         return $uss;
-    }    
+    }
+
+	public static function set_cookie($ck_var, $ck_value, $ck_time='F', $httponly = true){
+
+		$timestamp = GlobalConfig::$timestamp;
+		$db_ckpath = '/';
+		if ($_SERVER['HTTP_HOST'] == 'k') {
+			$db_ckpath = '/';
+			$db_ckdomain = '';
+		} else {
+			if (!$db_ckdomain) {
+				$pre_host = strtolower(substr($_SERVER['HTTP_HOST'],0,strpos($_SERVER['HTTP_HOST'],'.'))+1);
+				$db_ckdomain = substr($_SERVER['HTTP_HOST'],strpos($_SERVER['HTTP_HOST'],'.')+1);
+				$db_ckdomain = '.'.((strpos($db_ckdomain,'.')===false) ? $_SERVER['HTTP_HOST'] : $db_ckdomain);
+				if (strpos($B_url,$pre_host)!==false) {
+					$db_ckdomain = $pre_host.$db_ckdomain;
+				}
+			}
+		}
+		if ($ck_time=='F') {
+			$ck_time = $timestamp+31536000;	//1 year
+		} else {
+			($ck_value=='' && $ck_time==0) && $ck_time = $timestamp-31536000;
+		}
+
+		return setcookie(self::$cookie_pre.$ck_var, $ck_value, $ck_time, $db_ckpath, $db_ckdomain, self::get_secure(), $httponly);
+
+	}
+
+	public static function get_secure(){
+		$https = array();
+		$_SERVER['REQUEST_URI'] && $https = @parse_url($_SERVER['REQUEST_URI']);
+		if (empty($https['scheme'])) {
+			if ($_SERVER['HTTP_SCHEME']) {
+				$https['scheme'] = $_SERVER['HTTP_SCHEME'];
+			} else {
+				$https['scheme'] = ($_SERVER['HTTPS'] && strtolower($_SERVER['HTTPS']) != 'off') ? 'https' : 'http';
+			}
+		}
+		if ($https['scheme'] == 'https'){
+			return true;
+		}
+		return false;
+	}
+
+	public static function get_cookie_var($var){
+		return $_COOKIE[self::$cookie_pre.$var];
+	}
+
+	public static function get_user_info(){
+		global $db,$timestamp,$db_onlinetime,$winduid,$windpwd,$db_ifonlinetime,$c_oltime,$onlineip,$db_ipcheck;
+		$rt = $db->get_one("SELECT u.*,ui.* FROM pw_user u LEFT JOIN pw_userinfo ui USING(uid) WHERE u.uid='$winduid'");
+		$loginout = 0;
+		if ($db_ipcheck==1 && strpos($rt['onlineip'],$onlineip)===false) {
+			$iparray  = explode('.',$onlineip);
+			strpos($rt['onlineip'],$iparray[0].'.'.$iparray[1])===false && $loginout = 1;
+			unset($iparray);
+		}
+		if (!$rt || PwdCode($rt['password']) != $windpwd || $loginout==1) {
+			unset($rt); $GLOBALS['groupid']='2';
+			if (!function_exists('Loginout')) {
+				require_once(R_P.'mod/checkpass_mod.php');
+			}
+			Loginout();
+			Showmsg('ip_change');
+		} else {
+			$rt['uid'] = $winduid;
+			$rt['password'] = null;
+			if ($timestamp-$rt['lastvisit']>$db_onlinetime || $timestamp-$rt['lastvisit']>3600) {
+				$ct = "lastvisit='$timestamp',thisvisit='$timestamp'";
+				if ($db_ifonlinetime==1 && $c_oltime > 0) {
+					($c_oltime>$db_onlinetime*1.2) && $c_oltime = $db_onlinetime;
+					$ct .= ",onlinetime=onlinetime+'$c_oltime'";
+					$c_oltime=0;
+				}
+				$db->update("UPDATE pw_user SET $ct WHERE uid='$winduid'");
+			}
+		}
+		return $rt;
+	}
+
+
+	public static function str_code($string, $action='ENCODE'){
+		$key	= substr(md5($_SERVER["HTTP_USER_AGENT"].GlobalConfig::$strhash),8,18);
+		$action == 'DECODE' && $string = base64_decode($string);
+		$len	= strlen($key); $code = '';
+		for ($i=0; $i<strlen($string); $i++) {
+			$k		= $i % $len;
+			$code  .= $string[$i] ^ $key[$k];
+		}
+		$action == 'ENCODE' && $code = base64_encode($code);
+		return $code;
+	}
+
+	public static function _encrypt($plainText){
+
+        $key = GlobalConfig::$strhash;
+        $ivSize = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB);
+        $iv = mcrypt_create_iv($ivSize, MCRYPT_RAND);
+        $encryptText = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $key, $plainText, MCRYPT_MODE_ECB, $iv);
+        return trim(base64_encode($encryptText));
+
+    }
+
+	public static function _decrypt($encryptedText){
+
+        $key = GlobalConfig::$strhash;
+        $cryptText = base64_decode($encryptedText);
+        $ivSize = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB);
+        $iv = mcrypt_create_iv($ivSize, MCRYPT_RAND);
+        $decryptText = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $key, $cryptText, MCRYPT_MODE_ECB, $iv);
+        return trim($decryptText);
+    }
 }
 ?>
