@@ -1,7 +1,4 @@
 <?php
-/**
- * @file Session.class.php
- **/
 class Session
 {
 	public static $cookie_pre = 'khq_';
@@ -73,6 +70,10 @@ class Session
         return $uss;
     }
 
+	public static function get_cookie_var($var){
+		return $_COOKIE[self::$cookie_pre.$var];
+	}
+
 	public static function set_cookie($ck_var, $ck_value, $ck_time='F', $httponly = true){
 
 		$timestamp = GlobalConfig::$timestamp;
@@ -115,11 +116,8 @@ class Session
 		}
 		return false;
 	}
-
-	public static function get_cookie_var($var){
-		return $_COOKIE[self::$cookie_pre.$var];
-	}
-
+	
+	/*
 	public static function get_user_info(){
 		global $db,$timestamp,$db_onlinetime,$winduid,$windpwd,$db_ifonlinetime,$c_oltime,$onlineip,$db_ipcheck;
 		$rt = $db->get_one("SELECT u.*,ui.* FROM pw_user u LEFT JOIN pw_userinfo ui USING(uid) WHERE u.uid='$winduid'");
@@ -151,6 +149,7 @@ class Session
 		}
 		return $rt;
 	}
+	*/
 
 
 	public static function str_code($string, $action='ENCODE'){
@@ -185,4 +184,3 @@ class Session
         return trim($decryptText);
     }
 }
-?>

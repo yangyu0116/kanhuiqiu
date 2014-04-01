@@ -1,9 +1,4 @@
 <?php
-/** 
- * @file IndexAction.class.php
- * @brief 篇撞遍匈action
- */
-
 class IndexAction extends Action
 {
     public function execute($context, $actionParam = null)
@@ -12,21 +7,34 @@ class IndexAction extends Action
         $timer->start();
 
 		$userinfo = Session::check_login();
-//！！！！！！！！！！！！！！！！debug！！！！！！！！！！！！！！！！！！！！！！！！！！
-echo '<pre>';
-var_dump ($userinfo);
-echo '</pre>';
-echo '<pre>';
-var_dump ($_COOKIE);
-echo '</pre>';
-exit();
-//！！！！！！！！！！！！！！！！debug！！！！！！！！！！！！！！！！！！！！！！！！！！
-        $service = new IndexService();
-        $hc_list = 0;
-        $res_num_list = 0;
-		$total_num = 0;
-		$offset = 0;
-        $video_list = $service->find_list($service, $offset, $res_num_list, $total_num, $hc_list);
+
+		$user_service = new UserService();
+		$search_list = $user_service->find_user_search_list($userinfo['uid']);
+
+		if ($search_list == false){
+
+			$index_service = new IndexService();
+			$video_list = $index_service->recommend_list();
+			//！！！！！！！！！！！！！！！！debug！！！！！！！！！！！！！！！！！！！！！！！！！！
+			echo '<pre>';
+			print_r ($video_list);
+			echo '</pre>';
+			exit();
+			//！！！！！！！！！！！！！！！！debug！！！！！！！！！！！！！！！！！！！！！！！！！！
+
+		}else{
+			
+			$search_service = new SearchService();
+			$video_list = $search_service->find_list_by_array($search_list);
+			//！！！！！！！！！！！！！！！！debug！！！！！！！！！！！！！！！！！！！！！！！！！！
+			echo '<pre>';
+			print_r ($video_list);
+			echo '</pre>';
+			exit();
+			//！！！！！！！！！！！！！！！！debug！！！！！！！！！！！！！！！！！！！！！！！！！！
+			
+		}
+
 
         $urlparams = $context->getProperty('urlparams');
 
@@ -52,4 +60,3 @@ exit();
     }
 }
 
-?>

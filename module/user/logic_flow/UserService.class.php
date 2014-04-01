@@ -9,38 +9,26 @@ class UserService
 		$this->storage->get_connect_db('kanhuiqiu');
     }
 
-    /**
-     * 根据条件从数据库或cache查询榜单
-     *
-     * @param $lstParam url参数列表
-     * @param $intOffset 结果的起始位置
-     * @param $intNum 所需的结果条数
-     * @param $intResCount[out] 总结果条数，用于计算分页
-     * @param $hc[out] 是否命中cache  
-     * @return 专辑数组
-     * @return
-     **/
-    public function find_user($lstParam, $intOffset, $intNum, &$intResCount, &$hc)
+    public function find_user_search_list($uid, $intOffset, $intNum, &$intResCount, &$hc)
     {
         $m = new UserModel(UserConfig::$cache_config, $this->storage->db, null); 
 
-        $arrList = $m->find_list($lstParam, $intOffset, $intNum, $intResCount);
+        $arrList = $m->find_user_search_list($uid, $intOffset, $intNum, $intResCount);
 
         if ($arrList === false) {
             CLogger::warning('UserModel find_list fail', GlobalConfig::BINGO_LOG_ERRNO, 
                 array('params' => $lstParam, 'offset' => $intOffset, 'num' => $intNum, 'res_count' => $intResCount));
             return false;
-        }
+        }else{
+		
+		
+		}
 
-
-        //存入cache
         //$this->cache_set($dataCacheKey, $arrList);
         //$this->cache_set($cntCacheKey, $intResCount);
 
-        //未命中cache
         $hc = 0;
 
         return $arrList;
     }
 }
-?>

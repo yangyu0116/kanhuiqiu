@@ -73,14 +73,7 @@ class SearchModel extends BaseModel
 		$sql = 'select title,url,pic,year,date from tbl_video where id in ('.$id_str.') ORDER BY find_in_set(id, "'.$id_str.'")';
 		$res = $this->do_sql($sql);
 
-//————————————————debug——————————————————————————
-echo '<pre>';
-print_r ($res);
-echo '</pre>';
-exit();
-//————————————————debug——————————————————————————
-		exit;
-
+		return $res;
     }
 }
 ?>

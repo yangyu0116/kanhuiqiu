@@ -1,26 +1,14 @@
 <?php
 class SearchService
 {
-    //存储对象，封装memcached与mysql连接的创建流程
     private $storage; 
 
-    public function __construct()
-    {
+    public function __construct() 
+	{
         $this->storage = new Storage('kanhuiqiu');
 		$this->storage->get_connect_db('kanhuiqiu');
     }
 
-    /**
-     * 根据条件从数据库或cache查询榜单
-     *
-     * @param $lstParam url参数列表
-     * @param $intOffset 结果的起始位置
-     * @param $intNum 所需的结果条数
-     * @param $intResCount[out] 总结果条数，用于计算分页
-     * @param $hc[out] 是否命中cache  
-     * @return 专辑数组
-     * @return
-     **/
     public function find_list($lstParam, $intOffset, $intNum, &$intResCount, &$hc)
     {
         $m = new SearchModel(SearchConfig::$cache_config, $this->storage->db, null); 
@@ -43,5 +31,30 @@ class SearchService
 
         return $arrList;
     }
+
+	public function find_list_by_array($lstParam)
+    {
+		if (!is_array($lstParam) || empty($lstParam)){
+			return false;
+		}
+		
+		$arrList = array();
+		foreach ($lstParam as $param){
+			$param['wd'] = $param['query'];
+			$tmp = array();
+			$tmp['query'] = $param['query'];
+			$tmp['videos'] = $this->find_list($param, $intOffset, $intNum, $intResCount);
+
+			$arrList[] = $tmp;
+		}
+
+        //存入cache
+        //$this->cache_set($dataCacheKey, $arrList);
+        //$this->cache_set($cntCacheKey, $intResCount);
+
+        //未命中cache
+        $hc = 0;
+
+        return $arrList;
+    }
 }
-?>

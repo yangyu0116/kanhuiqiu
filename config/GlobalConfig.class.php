@@ -1,11 +1,4 @@
 <?php
-
-	/**
-	 * GlobalConfig.class.php's detail config 
-	 *
-	 * config GlobalConfig::$rootAction and GlobalConfig::$initActions
-	 * @package bingo/config
-	 */
 	class GlobalConfig {
 
 		public static $isDebug;
@@ -25,8 +18,6 @@
 		public static $redis;
         public static $master_database;
 
-        // bingo自身log所用的errno
-        // 所有wf日志都用相同的errno
         const BINGO_LOG_ERRNO = 1000;
 		const DATABASE_TIMEOUT = 1;
         

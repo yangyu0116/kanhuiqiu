@@ -48,8 +48,8 @@
     .$path_separator.INDEX_MODULE_PATH
 	.$path_separator.SEARCH_FLOW_PATH
     .$path_separator.SEARCH_MODULE_PATH
-	.$path_separator.SEARCH_FLOW_PATH
-    .$path_separator.SEARCH_MODULE_PATH
+	.$path_separator.USER_FLOW_PATH
+    .$path_separator.USER_MODULE_PATH
     ); 
 
     require_once SMARTY_PATH.'/Smarty.class.php';
