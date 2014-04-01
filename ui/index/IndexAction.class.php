@@ -15,26 +15,20 @@ class IndexAction extends Action
 
 			$index_service = new IndexService();
 			$video_list = $index_service->recommend_list();
-			//！！！！！！！！！！！！！！！！debug！！！！！！！！！！！！！！！！！！！！！！！！！！
-			echo '<pre>';
-			print_r ($video_list);
-			echo '</pre>';
-			exit();
-			//！！！！！！！！！！！！！！！！debug！！！！！！！！！！！！！！！！！！！！！！！！！！
 
 		}else{
 			
 			$search_service = new SearchService();
 			$video_list = $search_service->find_list_by_array($search_list);
+
+		}
+
 			//！！！！！！！！！！！！！！！！debug！！！！！！！！！！！！！！！！！！！！！！！！！！
 			echo '<pre>';
 			print_r ($video_list);
 			echo '</pre>';
 			exit();
 			//！！！！！！！！！！！！！！！！debug！！！！！！！！！！！！！！！！！！！！！！！！！！
-			
-		}
-
 
         $urlparams = $context->getProperty('urlparams');
 
