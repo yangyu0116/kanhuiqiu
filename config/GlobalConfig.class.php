@@ -80,10 +80,10 @@
     GlobalConfig::$database = array(
          #tcÄ¬ÈÏÅäÖÃ
         array(
-           'host' => '127.0.0.1',
-           'username'=>'video',
-           'password'=>'video',
-           'port'=>'3306'
+           'host' => $_SERVER['DB_HOST'],
+           'username' => $_SERVER['DB_NAME'],
+           'password' => $_SERVER['DB_PASS'],
+           'port' => $_SERVER['DB_PORT']
         )
     );  
 
