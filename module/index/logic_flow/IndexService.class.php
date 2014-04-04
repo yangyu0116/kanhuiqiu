@@ -1,26 +1,14 @@
-<?php
+ï»¿<?php
 class IndexService
 {
-    //´æ´¢¶ÔÏó£¬·â×°memcachedÓëmysqlÁ¬½ÓµÄ´´½¨Á÷³Ì
     private $storage; 
 
     public function __construct()
     {
         $this->storage = new Storage('kanhuiqiu');
-	$this->storage->get_connect_db('kanhuiqiu');
+		$this->storage->get_connect_db('kanhuiqiu');
     }
 
-    /**
-     * ¸ù¾ÝÌõ¼þ´ÓÊý¾Ý¿â»òcache²éÑ¯°ñµ¥
-     *
-     * @param $lstParam url²ÎÊýÁÐ±í
-     * @param $intOffset ½á¹ûµÄÆðÊ¼Î»ÖÃ
-     * @param $intNum ËùÐèµÄ½á¹ûÌõÊý
-     * @param $intResCount[out] ×Ü½á¹ûÌõÊý£¬ÓÃÓÚ¼ÆËã·ÖÒ³
-     * @param $hc[out] ÊÇ·ñÃüÖÐcache  
-     * @return ×¨¼­Êý×é
-     * @return
-     **/
     public function find_list($lstParam, $intOffset, $intNum, &$intResCount, &$hc)
     {
         $m = new IndexModel(IndexConfig::$cache_config, $this->storage->db, null); 
@@ -34,14 +22,37 @@ class IndexService
         }
 
 
-        //´æÈëcache
+        //å­˜å…¥cache
         //$this->cache_set($dataCacheKey, $arrList);
         //$this->cache_set($cntCacheKey, $intResCount);
 
-        //Î´ÃüÖÐcache
+        //æœªå‘½ä¸­cache
         $hc = 0;
 
         return $arrList;
     }
+
+    public function recommend_list()
+    {
+        $recommend_array = array(
+			'å®˜æ–¹ç»¼è¿°',
+			'æ¯”èµ›é›†é”¦',
+			'æ¯”èµ›å½•æ’­',
+			'å®˜æ–¹æœ€ä½³',
+			'5ä½³çƒ'
+		);
+		
+		$search_list = array();
+		foreach ($recommend_array as $k => $rec){
+			$search_list[$k]['wd'] = $rec;
+		}
+
+		$search_service = new SearchService();
+		$video_list = $search_service->find_list_by_array($search_list);
+
+		return $video_list;
+    }
+
+	
 }
 ?>

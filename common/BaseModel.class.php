@@ -32,7 +32,7 @@ class BaseModel
             CLogger::warning('db object NULL, sql: '.$sql);
             return false;
         }
-	$this->db->query('set names utf8');
+		$this->db->query('set names utf8');
         $ret = $this->db->query($sql);
         if($ret === false)
         {

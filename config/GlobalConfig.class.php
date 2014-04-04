@@ -81,7 +81,7 @@
          #tcÄ¬ÈÏÅäÖÃ
         array(
            'host' => $_SERVER['DB_HOST'],
-           'username' => $_SERVER['DB_NAME'],
+           'username' => $_SERVER['DB_USER'],
            'password' => $_SERVER['DB_PASS'],
            'port' => $_SERVER['DB_PORT']
         )

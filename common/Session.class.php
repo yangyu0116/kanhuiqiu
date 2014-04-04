@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 class Session
 {
 	public static $cookie_pre = 'khq_';
@@ -27,48 +27,6 @@ class Session
 
         return $userinfo;
     }  
-
-	public static function login(){
-
-        $userinfo = array();
-
-		//$login_info = $dbs->getRow($sql);	»ñÈ¡ÓÃ»§ĞÅÏ¢
-
-        //ret url
-        $uss['url'] = sprintf('http://%s%s', $_SERVER['SERVER_NAME'], $_SERVER['REQUEST_URI']);
-
-		//´íÎóµÇÂ½´ÎÊıÏŞÖÆ
-		$time_30 = strtotime($login_info["this_time"])+1800; //30·ÖÖÓÇ°
-		if (($login_info["times_limit"] >= $times_limit) && ($time_30 > time()))
-		{
-			echo "<script type='text/javascript'>alert('ÖØÊÔµÇÂ½´ÎÊıÏŞÖÆÒÑµ½,30·ÖÖÓÄÚ´ËÕÊºÅ²»¿ÉÒÔµÇÂ½£¡');window.close();</script>";
-			exit;
-		}
-		else
-		{
-			if ($a_pwd == $login_info["pwd"]) //µÇÂ½³É¹¦
-			{
-				session_start();
-				$_SESSION["admin_account"] = $login_info["account"];
-				$_SESSION["admin_name"] = $login_info["name"];
-				//µÇÂ½¼ÇÂ¼
-				$sql = "UPDATE `admin_accounts` SET `last_time`=`this_time`, `last_ip`=`this_ip`, `this_time`=NOW(), `this_ip`='$ip', `times_limit`=0 WHERE `id`=".$login_info["id"]." LIMIT 1";
-				$db->query($sql);
-				header("location:".PROJECT_DIR);
-				exit;
-			}
-			else
-			{
-				//ÏŞÖÆIPµÇÂ½ÖØÊÔ´ÎÊı
-				$sql = "UPDATE `admin_accounts` SET `this_time`=NOW(),`this_ip`='$ip',`times_limit`=(`times_limit`+1) WHERE `id`=".$login_info["id"]." LIMIT 1";
-				$db->query($sql);
-				echo "<script type='text/javascript'>alert('ÓÃ»§Ãû»òÃÜÂë´íÎó,Äã»¹¿ÉÒÔÖØÊÔ".($times_limit-$login_info["times_limit"])."´Î£¡');window.history.back();</script>";
-			}
-		}
-
-
-        return $uss;
-    }
 
 	public static function get_cookie_var($var){
 		return $_COOKIE[self::$cookie_pre.$var];
@@ -116,8 +74,52 @@ class Session
 		}
 		return false;
 	}
+
 	
 	/*
+	public static function login(){
+
+        $userinfo = array();
+
+		//$login_info = $dbs->getRow($sql);	è·å–ç”¨æˆ·ä¿¡æ¯
+
+        //ret url
+        $uss['url'] = sprintf('http://%s%s', $_SERVER['SERVER_NAME'], $_SERVER['REQUEST_URI']);
+
+		//é”™è¯¯ç™»é™†æ¬¡æ•°é™åˆ¶
+		$time_30 = strtotime($login_info["this_time"])+1800; //30åˆ†é’Ÿå‰
+		if (($login_info["times_limit"] >= $times_limit) && ($time_30 > time()))
+		{
+			echo "<script type='text/javascript'>alert('é‡è¯•ç™»é™†æ¬¡æ•°é™åˆ¶å·²åˆ°,30åˆ†é’Ÿå†…æ­¤å¸å·ä¸å¯ä»¥ç™»é™†ï¼');window.close();</script>";
+			exit;
+		}
+		else
+		{
+			if ($a_pwd == $login_info["pwd"]) //ç™»é™†æˆåŠŸ
+			{
+				session_start();
+				$_SESSION["admin_account"] = $login_info["account"];
+				$_SESSION["admin_name"] = $login_info["name"];
+				//ç™»é™†è®°å½•
+				$sql = "UPDATE `admin_accounts` SET `last_time`=`this_time`, `last_ip`=`this_ip`, `this_time`=NOW(), `this_ip`='$ip', `times_limit`=0 WHERE `id`=".$login_info["id"]." LIMIT 1";
+				$db->query($sql);
+				header("location:".PROJECT_DIR);
+				exit;
+			}
+			else
+			{
+				//é™åˆ¶IPç™»é™†é‡è¯•æ¬¡æ•°
+				$sql = "UPDATE `admin_accounts` SET `this_time`=NOW(),`this_ip`='$ip',`times_limit`=(`times_limit`+1) WHERE `id`=".$login_info["id"]." LIMIT 1";
+				$db->query($sql);
+				echo "<script type='text/javascript'>alert('ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯,ä½ è¿˜å¯ä»¥é‡è¯•".($times_limit-$login_info["times_limit"])."æ¬¡ï¼');window.history.back();</script>";
+			}
+		}
+
+
+        return $uss;
+    }
+
+
 	public static function get_user_info(){
 		global $db,$timestamp,$db_onlinetime,$winduid,$windpwd,$db_ifonlinetime,$c_oltime,$onlineip,$db_ipcheck;
 		$rt = $db->get_one("SELECT u.*,ui.* FROM pw_user u LEFT JOIN pw_userinfo ui USING(uid) WHERE u.uid='$winduid'");

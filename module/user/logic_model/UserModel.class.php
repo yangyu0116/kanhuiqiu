@@ -5,7 +5,7 @@ class UserModel extends BaseModel
 
     public function find_user_search_list($uid)
     {
-		$sql = 'select query,set_top from `'.$this->dataTableName.'` where uid="'.$uid.'" order by id desc limit 10';
+		$sql = 'select wd,set_top from `'.$this->dataTableName.'` where uid="'.$uid.'" order by id desc limit 10';
 		$res = $this->do_sql($sql);
 
 		return $res;
