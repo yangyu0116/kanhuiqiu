@@ -53,7 +53,6 @@
     ); 
 
     require_once SMARTY_PATH.'/Smarty.class.php';
-    require_once CONFIG_PATH.'/IDCConfig.class.php';
     require_once TEMPLATE_PATH.'/CacheTimestamp.class.php';
 
 ?>
