@@ -1,7 +1,7 @@
 <?php
 /** 
  * @file SearchAction.class.php
- * @brief ÊÓÆµÊ×Ò³action
+ * @brief è§†é¢‘é¦–é¡µaction
  */
 
 class SearchAction extends Action
@@ -42,12 +42,12 @@ class SearchAction extends Action
         $pager = new Pager($urlprefix, $res_num_search, $urlparams['pn'], $this->rn);
         $pagebar = $pager->get_html();
 
-//¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ªdebug¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
+//â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”debugâ€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
 echo '<pre>';
 print_r ($video_list);
 echo '</pre>';
 exit();
-//¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ªdebug¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
+//â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”debugâ€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
         // fill tpl variables        
         $tpl = SimpleTemplate::getInstance();
 

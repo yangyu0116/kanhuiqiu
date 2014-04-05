@@ -59,26 +59,26 @@
     );
 
     GlobalConfig::$LOG_CONFIG = array(
-        // ÈÕÖ¾¼¶±ðÅäÖÃ£¬0x07 = LOG_LEVEL_FATAL|LOG_LEVEL_WARNING|LOG_LEVEL_NOTICE
+        // æ—¥å¿—çº§åˆ«é…ç½®ï¼Œ0x07 = LOG_LEVEL_FATAL|LOG_LEVEL_WARNING|LOG_LEVEL_NOTICE
         'intLevel'			=> 0xff,
         //'intLevel'			=> 0x07,
-        // ÈÕÖ¾ÎÄ¼þÂ·¾¶£¬wfÈÕÖ¾Îªbingo.log.wf
+        // æ—¥å¿—æ–‡ä»¶è·¯å¾„ï¼Œwfæ—¥å¿—ä¸ºbingo.log.wf
         'strLogFile'		=> ROOT_PATH.'/log/bingo.log',
-        // µ¥Î»:byte, 0±íÊ¾ÎÞÏÞ
+        // å•ä½:byte, 0è¡¨ç¤ºæ— é™
         'intMaxFileSize'    => 2000000000,
-        // ÌØÊâÈÕÖ¾Â·¾¶£¬¸ù¾ÝÐèÒª×ÔÐÐÅäÖÃ
+        // ç‰¹æ®Šæ—¥å¿—è·¯å¾„ï¼Œæ ¹æ®éœ€è¦è‡ªè¡Œé…ç½®
         'arrSelfLogFiles'	=> array()
     );
-    // µ¼³ö¸øCLoggerÊ¹ÓÃ
+    // å¯¼å‡ºç»™CLoggerä½¿ç”¨
     $GLOBALS['LOG'] = GlobalConfig::$LOG_CONFIG;
 
 
-	//Êý¾Ý¿â    
-   //Êý¾Ý¿âÅäÖÃ
-    // - ¿ÉÒÔÅäÖÃ¶à¸öÊý¾Ý¿â
-    // - Ä¬ÈÏÊ¹ÓÃµÚÒ»ÏîÅäÖÃ, ÔÚµÚÒ»ÏîÅäÖÃÁ¬½Ó³ö´íÊ±Ê¹ÓÃ±¸ÓÃÅäÖÃ
+	//æ•°æ®åº“    
+   //æ•°æ®åº“é…ç½®
+    // - å¯ä»¥é…ç½®å¤šä¸ªæ•°æ®åº“
+    // - é»˜è®¤ä½¿ç”¨ç¬¬ä¸€é¡¹é…ç½®, åœ¨ç¬¬ä¸€é¡¹é…ç½®è¿žæŽ¥å‡ºé”™æ—¶ä½¿ç”¨å¤‡ç”¨é…ç½®
     GlobalConfig::$database = array(
-         #tcÄ¬ÈÏÅäÖÃ
+         #tcé»˜è®¤é…ç½®
         array(
            'host' => $_SERVER['DB_HOST'],
            'username' => $_SERVER['DB_USER'],

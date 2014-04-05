@@ -1,7 +1,7 @@
 <?php
 /** 
  * @file Storage.class.php
- * @brief ·â×°mysqlºÍmemcachedµÄ¹¹Ôì
+ * @brief å°è£…mysqlå’Œmemcachedçš„æž„é€ 
  */
 class Storage 
 {
@@ -14,6 +14,7 @@ class Storage
     public function __construct($_db_name, $is_cache=true)
     {
         $this->db_name = $_db_name;
+		$this->get_connect_db($this->db_name);
         if($is_cache)
         {
 			if ($this->convert_to_memcache == true){
@@ -39,7 +40,7 @@ class Storage
     }
 
     /** 
-     * @brief Á¬mysql
+     * @brief è¿žmysql
      * 
      * @return 
      */
@@ -49,7 +50,7 @@ class Storage
         {
             $this->db = new DB(true);
             $databases = GlobalConfig::$database;
-            //Á¬½ÓÊý¾Ý¿â£¬´øÖØÊÔ»úÖÆ
+            //è¿žæŽ¥æ•°æ®åº“ï¼Œå¸¦é‡è¯•æœºåˆ¶
             $isConnected = false;
             //yuping begin
             while(count($databases))
@@ -59,7 +60,7 @@ class Storage
                 $ret = $this->db->setConnectTimeOut(GlobalConfig::DATABASE_TIMEOUT);
                 if($ret===false)
                 {
-                    //ÉèÖÃÁ¬½Ó³¬Ê±Ê§°Ü
+                    //è®¾ç½®è¿žæŽ¥è¶…æ—¶å¤±è´¥
                     Clogger::warning('set connect timeout fail', GlobalConfig::BINGO_LOG_ERRNO, $database);
                 }
                 $isConnected = $this->db->connect($database['host'],$database['username'],
@@ -69,24 +70,23 @@ class Storage
                     Clogger::warning('connect to database fail', GlobalConfig::BINGO_LOG_ERRNO, $database);
                     array_splice($databases,$databasekey,1);
                 } else {   
-                    //Á¬½Ó³É¹¦                   
+                    //è¿žæŽ¥æˆåŠŸ                   
                     Clogger::debug('connect to database success', 0, $database);
                     break;
                 }
             }    
             //yuping end
-            //ËùÓÐµÄÁ¬½Ó¾ùÊ§°Ü
+            //æ‰€æœ‰çš„è¿žæŽ¥å‡å¤±è´¥
             if($isConnected === false)
             {
                 CLogger::fatal('all database down!', GlobalConfig::BINGO_LOG_ERRNO);
             }
         }
-	$this->db->query('set names utf8');
         return $this->db;
     }
 
     /** 
-     * @brief Á¬memcached
+     * @brief è¿žmemcached
      * 
      * @return 
      */
@@ -113,7 +113,7 @@ class Storage
     }
 
 	/** 
-     * @brief Á¬redis
+     * @brief è¿žredis
      * 
      * @return 
      */
@@ -121,7 +121,7 @@ class Storage
     {
         if (empty($this->memcache))
         {
-			//Ê¹ÓÃredis
+			//ä½¿ç”¨redis
             //$config = RedisConf::$HOSTS;
 			$this->memcache = new RedisProxy();
 

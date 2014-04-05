@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 class IndexAction extends Action
 {
     public function execute($context, $actionParam = null)
@@ -23,6 +23,16 @@ class IndexAction extends Action
 
 		}
 
+$print_video = array();
+foreach ($video_list as $v){
+	$print_video[] = $v['wd'];
+}
+//————————————————debug——————————————————————————
+echo '<pre>';
+print_r ($print_video);
+echo '</pre>';
+exit();
+//————————————————debug——————————————————————————
 			//————————————————debug——————————————————————————
 			echo '<pre>';
 			print_r ($video_list);

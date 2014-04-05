@@ -1,0 +1,1 @@
+ALTER TABLE `tbl_search_history` CHANGE `set_top` `orderby` TINYINT(1) NOT NULL DEFAULT '0';

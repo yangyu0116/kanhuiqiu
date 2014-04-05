@@ -6,15 +6,19 @@ class UserService
     public function __construct()
     {
         $this->storage = new Storage('kanhuiqiu');
-		$this->storage->get_connect_db('kanhuiqiu');
     }
 
-    public function find_user_search_list($uid, $intOffset, $intNum, &$intResCount, &$hc)
+    public function find_user_search_list($uid)
     {
         $m = new UserModel(UserConfig::$cache_config, $this->storage->db, null); 
 
-        $arrList = $m->find_user_search_list($uid, $intOffset, $intNum, $intResCount);
-
+        $arrList = $m->find_user_search_list($uid);
+//————————————————debug——————————————————————————
+echo '<pre>';
+print_r ($arrList);
+echo '</pre>';
+exit();
+//————————————————debug——————————————————————————
         if ($arrList === false) {
             CLogger::warning('UserModel find_list fail', GlobalConfig::BINGO_LOG_ERRNO, 
                 array('params' => $lstParam, 'offset' => $intOffset, 'num' => $intNum, 'res_count' => $intResCount));

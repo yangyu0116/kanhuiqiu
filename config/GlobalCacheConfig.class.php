@@ -4,27 +4,27 @@
  * @brief GlobalCacheConfig
  * @author yangyu 
  * @date 2013-07-24
- * @desc È«¾Ö»º´æÅäÖÃÎÄ¼ş
+ * @desc å…¨å±€ç¼“å­˜é…ç½®æ–‡ä»¶
  * @sample 
-        '/^(\/$|\/\?)/' => array(						//URLÂ·¾¶ÕıÔòÆ¥Åä
-				'NEW_INDEX_TEMPLATE' => array(			//cache Ë÷Òı, ÒªÇóÎ¨Ò»
+        '/^(\/$|\/\?)/' => array(						//URLè·¯å¾„æ­£åˆ™åŒ¹é…
+				'NEW_INDEX_TEMPLATE' => array(			//cache ç´¢å¼•, è¦æ±‚å”¯ä¸€
 								'NEW_INDEX_TEMPLATE',	//cache key
-								 600,					//¹ıÆÚÊ±¼ä
-								 true,					//ÊÇ·ñ¿ªÆô
+								 600,					//è¿‡æœŸæ—¶é—´
+								 true,					//æ˜¯å¦å¼€å¯
 							),
  */
 class GlobalCacheConfig {
 
-	//È«¾ÖÅäÖÃ
+	//å…¨å±€é…ç½®
 	public static $config;
 	
-	//ÔØÈëµ±Ç°µÄÅäÖÃ
+	//è½½å…¥å½“å‰çš„é…ç½®
 	public static $cache = array();
 
-	//cache key·Ö¸ô·û
+	//cache keyåˆ†éš”ç¬¦
 	public static $cache_seq = '::';
 
-	//Õë¶Ôhash key½øĞĞÊÊÅä
+	//é’ˆå¯¹hash keyè¿›è¡Œé€‚é…
 	public static function create_key(){
 		
 		if (func_num_args() < 2){
@@ -53,9 +53,9 @@ class GlobalCacheConfig {
 }
 
 GlobalCacheConfig::$config = array(
-		//Ê×Ò³
+		//é¦–é¡µ
         '/^(\/$|\/\?)/' => array(
-				//Ò³ÃæÄ£°æ
+				//é¡µé¢æ¨¡ç‰ˆ
 				'NEW_INDEX_TEMPLATE' => array(
 								'NEW_INDEX_TEMPLATE',
 								 600,

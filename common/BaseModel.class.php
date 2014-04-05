@@ -1,12 +1,4 @@
 <?php
-/** 
-* @file BaseModel.class.php
-* @brief ¹«ÓÃ¸¸Model
-* ·â×°Á¬mysqlºÍmemcached
-* @author interma
-* @date 2010-03-18
- */
-
 class BaseModel 
 {
     protected $tablename;
@@ -22,6 +14,10 @@ class BaseModel
 
 		$this->db = $_db;
 		$this->memcache = $_memcache;
+
+		if (!empty($this->db)){
+			$this->db->query('set names utf8');
+		}
     }
 
     protected function do_sql($sql)
@@ -32,7 +28,6 @@ class BaseModel
             CLogger::warning('db object NULL, sql: '.$sql);
             return false;
         }
-		$this->db->query('set names utf8');
         $ret = $this->db->query($sql);
         if($ret === false)
         {
@@ -47,21 +42,21 @@ class BaseModel
     
 	/** 
 		* @brief 
-		* Ö´ĞĞsqlÓï¾ä£¬ÆäÖĞ°üº¬ÁËcache¶ÁÈ¡Âß¼­
+		* æ‰§è¡Œsqlè¯­å¥ï¼Œå…¶ä¸­åŒ…å«äº†cacheè¯»å–é€»è¾‘
 		* 
-		* @param $sql Ö´ĞĞµÄsqlÓï¾ä
-		* @param $found_rows[out] sql²Ù×÷µÄĞĞÊı 
+		* @param $sql æ‰§è¡Œçš„sqlè¯­å¥
+		* @param $found_rows[out] sqlæ“ä½œçš„è¡Œæ•° 
 		* 
 		* @return 
-		* false	Ö´ĞĞsqlÊ§°Ü
-		* ÆäËû	·µ»ØµÄ½á¹û¼¯ 
+		* false	æ‰§è¡Œsqlå¤±è´¥
+		* å…¶ä»–	è¿”å›çš„ç»“æœé›† 
 	 */
     protected function do_query($sql, &$found_rows)
     {
     	$cache_key = $sql;
     		
         $result = false;
-		// memcacheÎªNULL or ²»Ê¹ÓÃCache
+		// memcacheä¸ºNULL or ä¸ä½¿ç”¨Cache
 		if (empty($this->memcache) || 
 			$this->use_cache === false)
 		{
@@ -85,7 +80,7 @@ class BaseModel
                 CLogger::warning('db query fail, sql: '.$sql);
             }
 		}
-		// Ê¹ÓÃcache
+		// ä½¿ç”¨cache
         else
         {
             $ret = $this->memcache->get($cache_key);
@@ -99,7 +94,7 @@ class BaseModel
 				}
 
                 $ret = $this->db->query($sql);
-                // Òªcache½á¹û¼¯ºÏºÍ½á¹ûÊıÄ¿
+                // è¦cacheç»“æœé›†åˆå’Œç»“æœæ•°ç›®
                 if ($ret !== false)
                 {
 					$result = $ret;

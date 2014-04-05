@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 class IndexService
 {
     private $storage; 
@@ -6,7 +6,6 @@ class IndexService
     public function __construct()
     {
         $this->storage = new Storage('kanhuiqiu');
-		$this->storage->get_connect_db('kanhuiqiu');
     }
 
     public function find_list($lstParam, $intOffset, $intNum, &$intResCount, &$hc)

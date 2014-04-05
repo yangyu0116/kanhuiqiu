@@ -4,11 +4,11 @@ class UserConfig
     public static $cache_config;
 }
 
-//cacheÅäÖÃ
+//cacheé…ç½®
 UserConfig::$cache_config = array(
-    //ÊÇ·ñÊ¹ÓÃcache
+    //æ˜¯å¦ä½¿ç”¨cache
     'use_cache' => false,
-    //cache¹ýÆÚÊ±¼ä(Ãë)
+    //cacheè¿‡æœŸæ—¶é—´(ç§’)
     'cache_expire_time' => 600,
 );
 ?>
