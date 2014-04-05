@@ -2,6 +2,7 @@
 class UserConfig
 {
     public static $cache_config;
+	public static $search_num;
 }
 
 //cache配置
@@ -11,4 +12,5 @@ UserConfig::$cache_config = array(
     //cache过期时间(秒)
     'cache_expire_time' => 600,
 );
-?>
+
+UserConfig::$search_num = 10;

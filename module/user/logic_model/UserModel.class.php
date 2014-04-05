@@ -1,11 +1,15 @@
 <?php
 class UserModel extends BaseModel
 {
-    private $table_name = 'tbl_search_history';
+	private $user_table = 'tbl_user';
+	private $cookie_user_table = 'tbl_cookie_user';
+    private $search_history_table = 'tbl_search_history';
 
     public function find_user_search_list($uid)
     {
-		$sql = 'select wd,orderby from `'.$this->table_name.'` where uid="'.$uid.'" order by orderby desc,id desc limit 10';
+		$limit_num = UserConfig::$search_num;
+
+		$sql = 'select wd,orderby from `'.$this->search_history_table.'` where uid="'.$uid.'" order by orderby desc,id desc limit '. $limit_num;
 		$res = $this->do_sql($sql);
 
 		return $res;
@@ -13,10 +17,23 @@ class UserModel extends BaseModel
 
 	public function add_user_search($uid, $uname, $wd)
     {
-		$sql = 'insert into `'.$this->table_name.'` set uid="'.$uid.'",uname="'.$unamme.'",wd="'.$wd.'"';
-		$res = $this->do_sql($sql);
+		$limit_num = UserConfig::$search_num;
 
-		return $res;
+		$sql = 'insert into `'.$this->search_history_table.'` set uid="'.$uid.'",uname="'.$unamme.'",wd="'.$wd.'"';
+		$this->do_sql($sql);
+
+		return true;
     }
+
+	public function add_cookie_user($uid)
+    {
+		$sql = 'insert into `'.$this->cookie_user_table.'` set 
+				uid="'.$uid.'",
+				reg_time="'.GlobalConfig::$timestamp.'",
+				reg_ip="'.$ip.'"';
+		$this->do_sql($sql);
+		
+		return true;
+    }
+
 }
-?>

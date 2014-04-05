@@ -10,6 +10,8 @@ class Session
 		//$login_user_info = self::get_cookie_var('login_user');
 		$cookie_user_info = self::get_cookie_var('user');
 
+		//substr($uid, 0, 32);
+
 		$uid = $uname = '';
 		if (!empty($cookie_user_info)){
 			list($uid,$uname) = explode("\t", self::str_code($cookie_user_info,'DECODE'));
@@ -18,6 +20,11 @@ class Session
 
 		if (empty($uid)){
 			$uid = GlobalConfig::$timestamp.rand(0,1000);
+
+			$this->storage = new Storage('kanhuiqiu');
+			$m_user = new UserModel(UserConfig::$cache_config, $this->storage->db, null);
+			$m_user->add_cookie_user($uid);
+
 			$cookie_val = self::str_code($uid,'ENCODE');
 			self::set_cookie('user', $cookie_val);
 		}
