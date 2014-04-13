@@ -1,4 +1,4 @@
 log/
 logs/
-webroot/
+webroot/index.php
 lib/smarty/templates/templates_c
