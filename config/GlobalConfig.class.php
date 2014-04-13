@@ -22,7 +22,8 @@
 		const DATABASE_TIMEOUT = 1;
         
         public static $default_url;
-        public static $default_host;
+		public static $site_url;
+        public static $error_url;
 
 		public static $timestamp;
 		public static $strhash;
@@ -93,8 +94,9 @@
 	   'port'=>'6379'
     );
     
-    GlobalConfig::$default_url = 'http://www.kanhuiqiu.com/error.html';
-    GlobalConfig::$timestamp = 'http://www.kanhuiqiu.com';
+    GlobalConfig::$default_url = 'http://www.kanhuiqiu.com';
+	GlobalConfig::$site_url = 'http://www.kanhuiqiu.com';
+    GlobalConfig::$error_url = 'http://www.kanhuiqiu.com/error.html';
 
 	GlobalConfig::$timestamp = time();
 	GlobalConfig::$strhash = 'khq_yy';

@@ -19,6 +19,11 @@ class UserModel extends BaseModel
     {
 		$limit_num = UserConfig::$search_num;
 
+		$search_count = $this->do_sql('select count(*) as count from `'.$this->search_history_table.'` where uid="'.$uid.'" limit 1');
+		if ($search_count[0]['count'] >= $limit_num){
+			$this->do_sql('delete from `'.$this->search_history_table.'` where uid="'.$uid.'" order by orderby asc,id asc limit 1');
+		}
+
 		$sql = 'insert into `'.$this->search_history_table.'` set uid="'.$uid.'",uname="'.$unamme.'",wd="'.$wd.'"';
 		$this->do_sql($sql);
 
@@ -29,8 +34,8 @@ class UserModel extends BaseModel
     {
 		$sql = 'insert into `'.$this->cookie_user_table.'` set 
 				uid="'.$uid.'",
-				reg_time="'.GlobalConfig::$timestamp.'",
-				reg_ip="'.$ip.'"';
+				reg_time="'.date("Y-m-d H:i:s",GlobalConfig::$timestamp).'",
+				reg_ip="'.HttpIpRequest::getUserClientIp().'"';
 		$this->do_sql($sql);
 		
 		return true;

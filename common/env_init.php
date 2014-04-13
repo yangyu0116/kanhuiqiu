@@ -24,7 +24,8 @@
     
     define('HOST_PATH',             'http://'.$_SERVER['HTTP_HOST']);
     define('CSS_PATH',              'http://'.$_SERVER['HTTP_HOST'].'/static/css');
-    define('IMAGE_PATH',            'http://'.$_SERVER['HTTP_HOST'].'/static/img');
+    define('IMAGE_PATH',            'http://'.$_SERVER['HTTP_HOST'].'/static/imgs');
+	define('JS_PATH',            'http://'.$_SERVER['HTTP_HOST'].'/static/js');
     define('CACHEKEYSEPARATOR', '_');
 
 	//判断系统分隔符
@@ -55,4 +56,3 @@
     require_once SMARTY_PATH.'/Smarty.class.php';
     require_once TEMPLATE_PATH.'/CacheTimestamp.class.php';
 
-?>

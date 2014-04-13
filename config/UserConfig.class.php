@@ -13,4 +13,4 @@ UserConfig::$cache_config = array(
     'cache_expire_time' => 600,
 );
 
-UserConfig::$search_num = 10;
+UserConfig::$search_num = 5;

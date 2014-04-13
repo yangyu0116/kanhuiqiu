@@ -1,6 +1,7 @@
 <?php
 class IndexConfig
 {
+	public static $tpl_name;
     public static $cache_config;
 }
 
@@ -11,4 +12,5 @@ IndexConfig::$cache_config = array(
     //cache过期时间(秒)
     'cache_expire_time' => 600,
 );
-?>
+
+IndexConfig::$tpl_name = 'basketball-index.html';

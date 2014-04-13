@@ -2,6 +2,7 @@
 class SearchConfig
 {
     public static $cache_config;
+	public static $tpl_name;
 }
 
 //cache配置
@@ -11,4 +12,5 @@ SearchConfig::$cache_config = array(
     //cache过期时间(秒)
     'cache_expire_time' => 600,
 );
-?>
+
+SearchConfig::$tpl_name = 'search-common.html';

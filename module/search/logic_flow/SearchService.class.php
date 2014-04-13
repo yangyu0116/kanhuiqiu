@@ -42,6 +42,13 @@ class SearchService
             return false;
         }
 
+		if ($arrList){
+			foreach ($arrList as &$l){
+				$l['date'] = date("Y", GlobalConfig::$timestamp) == $l['year'] ? $l['date'] : $l['year'].'年'.$l['date'];
+			}
+		}
+	
+
 
         //存入cache
         //$this->cache_set($dataCacheKey, $arrList);
@@ -60,7 +67,9 @@ class SearchService
 		}
 		
 		$arrList = array();
-		//$intOffset = $intNum = $intResCount = 0;
+		$intOffset = 0;
+		$intNum = 20;
+		$intResCount = 0;
 		foreach ($lst_param as $param){
 
 			$tmp = array();

@@ -1,0 +1,14 @@
+{
+  "vars": {},
+  "css": [
+    "forms.less",
+    "buttons.less",
+    "button-groups.less",
+    "input-groups.less",
+    "carousel.less"
+  ],
+  "js": [
+    "carousel.js",
+    "tab.js"
+  ]
+}

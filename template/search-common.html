@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% $smarty.get.wd %} - 搜索结果 - 看会球</title>
+    <meta charset="utf-8"/>
+    <link href="/static/vendor/css/normalize.css" rel="stylesheet"/>
+    <link href="/static/css/search-common.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="main">
+    <div id="header">
+        <div class="header-wrap">
+            <div class="logo"></div>
+            <div class="input-group">
+				<FORM method="get" action="/s?">
+					<input type="text" class="form-control" name="wd" value="{% $smarty.get.wd %}"/>
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="submit"></button>
+					</span>
+				</FORM>
+            </div>
+			<!--
+            <ul class="team-logo">
+                <li><a class="team-logo-one" href="#"></a></li>
+                <li><a class="team-logo-two" href="#"></a></li>
+                <li><a class="team-logo-three" href="#"></a></li>
+                <li><a class="team-logo-four" href="#"></a></li>
+            </ul>
+            <div class="admin">
+                <a class="admin-information" href="#">
+                    admin
+                </a>
+                <span class="information-remind">3</span>
+            </div>
+			-->
+        </div>
+    </div>
+    <div id="content">
+        <div class="search-key">
+            <a class="search-key-link" href="#">{% $smarty.get.wd %}</a>
+            <a class="search-result-amount" href="#">找到 {% $total_num %} 条结果</a>
+        </div>
+        <div class="search-result-video" id="result">
+            <ul class="result-video-list">
+			{% foreach item=video from=$video_list %}
+                <li class="item video-item1">
+                    <a class="video-link" href="{% $video.url %}" target="_blank">
+                        <img src="{% $video.pic %}"/>
+                    </a>
+                    <a class="video-title-link" href="{% $video.url %}" target="_blank">
+                        {% $video.title %}
+                    </a>
+
+                    <div class="data-praise-information">
+                        <span class="data">{% $video.date %}</span>
+                        <!--<a class="red-heart" href="#">5352</a>-->
+                    </div>
+                </li>
+				{% /foreach %}
+            </ul>
+            <!--End of ul-->
+        </div>
+        <!-- End of search-result-video-->
+        <div class="more-result">
+            <a class="more-result-link" href="#">
+                MORE
+            </a>
+        </div>
+        <!-- end of more-result-->
+    </div>
+	{% include file="footer.html" %}
+    <!--end of footer-->
+</div>
+<!-- <div class="cover-for-test"></div> -->
+
+<script> 
+function SearchHighlight(idVal,keyword) 
+{ 
+    var pucl = document.getElementById(idVal); 
+    if("" == keyword) return; 
+    var temp=pucl.innerHTML; 
+    var htmlReg = new RegExp("\<.*?\>","i"); 
+    var arrA = new Array(); 
+    //替换HTML标签 
+    for(var i=0;true;i++) 
+    { 
+        var m=htmlReg.exec(temp); 
+        if(m) 
+        { 
+            arrA[i]=m; 
+        } 
+        else 
+        { 
+            break; 
+        } 
+        temp=temp.replace(m,"{[("+i+")]}"); 
+    } 
+    words = unescape(keyword.replace(/\+/g,' ')).split(/\s+/); 
+    //替换关键字 
+    for (w=0;w<words.length;w++) 
+    { 
+        var r = new RegExp("("+words[w].replace(/[(){}.+*?^$|\\\[\]]/g, "\\$&")+")","ig"); 
+        temp = temp.replace(r,"<b style='color:Red;'>$1</b>"); 
+    } 
+    //恢复HTML标签 
+    for(var i=0;i<arrA.length;i++) 
+    { 
+        temp=temp.replace("{[("+i+")]}",arrA[i]); 
+    } 
+        pucl.innerHTML=temp; 
+} 
+SearchHighlight("result", "{% $smarty.get.wd %}"); 
+</script>
+</body>
+</html>

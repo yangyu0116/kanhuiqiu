@@ -1,12 +1,6 @@
 <?php
 class SearchModel extends BaseModel
 {
-    /**
-     * 数据表名
-     **/
-    private $dataTableName = '';
-
-
     public function find_list($lstParam, $intOffset, $intNum, &$intResCount)
     {
 		if (isset($lstParam['wd'])){
@@ -16,8 +10,12 @@ class SearchModel extends BaseModel
 		}
 
 		if ($_SERVER['HTTP_HOST'] == 'k'){
-			$sql = 'select title,url,pic,year,date from tbl_video where title like "%'.$word.'%" order by id desc limit 20 ';
+			$sql = 'select SQL_CALC_FOUND_ROWS title,url,pic,year,date from tbl_video where title like "%'.$word.'%" order by id desc limit '.$intOffset.','.$intNum.' ';
 			$result = $this->do_sql($sql);
+
+			$res2 = $this->do_sql('SELECT FOUND_ROWS() as total');
+			$intResCount = $res2[0]['total'];
+
 			return $result;
 		}
 
@@ -38,7 +36,7 @@ class SearchModel extends BaseModel
 		*/
 
 		//取从头开始的前20条数据，0,20类似SQl语句的LIMIT 0,20
-		$cl->SetLimits(0,20);
+		$cl->SetLimits($intOffset, $intNum);
 
 		$cl->SetSortMode (SPH_SORT_ATTR_DESC, 'vid' );
 		//$cl->setMatchMode (1);
@@ -58,6 +56,8 @@ class SearchModel extends BaseModel
 			}
 			//return false;
 		}
+
+		$intResCount = $res['total'];
 		
 		$id_arr = array();
 		foreach ($res['matches'] as $r){

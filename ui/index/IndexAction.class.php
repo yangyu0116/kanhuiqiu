@@ -23,39 +23,22 @@ class IndexAction extends Action
 
 		}
 
-$print_video = array();
-foreach ($video_list as $v){
-	$print_video[] = $v['wd'];
-}
-//————————————————debug——————————————————————————
-echo '<pre>';
-print_r ($print_video);
-echo '</pre>';
-exit();
-//————————————————debug——————————————————————————
-			//————————————————debug——————————————————————————
-			echo '<pre>';
-			print_r ($video_list);
-			echo '</pre>';
-			exit();
-			//————————————————debug——————————————————————————
 
         $urlparams = $context->getProperty('urlparams');
 
 
-        $pager = new Pager($urlprefix, $res_num_index, $urlparams['pn'], $this->rn);
-        $pagebar = $pager->get_html();
+        //$pager = new Pager($urlprefix, $res_num_index, $urlparams['pn'], $this->rn);
+        //$pagebar = $pager->get_html();
 
+ 
+        $tpl = SimpleTemplate::getInstance();
 
-        // fill tpl variables        
-        $this->tpl = SimpleTemplate::getInstance();
+        //$this->tpl->assign('baseurl',$context->getProperty('baseurl'));
+        //$this->tpl->assign('pagebar',$pagebar);
+        //$this->tpl->assign('total_num',$res_num_index);
 
-        $this->tpl->assign('baseurl',$context->getProperty('baseurl'));
-        $this->tpl->assign('pagebar',$pagebar);
-        $this->tpl->assign('total_num',$res_num_index);
-
-
-        $this->tpl->show('page/index/index.tpl');
+		$tpl->assign('video_list',$video_list);
+        $tpl->show(IndexConfig::$tpl_name);
 
         $timer->stop();
         CLogger::notice('', 0, 

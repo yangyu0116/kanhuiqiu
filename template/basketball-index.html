@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>看会儿球</title>
+    <meta charset="utf-8"/>
+    <!--<link href="./vendor/css/bootstrap.css" rel="stylesheet"/>-->
+    <link href="/static/vendor/css/normalize.css" rel="stylesheet"/>
+    <link href="/static/css/basketball-index.css" rel="stylesheet"/>
+    <!--<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>-->
+    <!--<script src="./vendor/js/bootstrap.js"></script>-->
+    <script src="/static/js/js/carousel.js"></script>
+</head>
+<body>
+<div id="main">
+{% include file="header.html" %}
+<div id="content">
+<!--<div class="carousel">-->
+<!--<div class="carousel-wrap">-->
+<!--<ul class="carousel-list">-->
+<!--<li class="item-one">-->
+<!--<a class="carousel-img-link carousel-img-link1" href="#" target="_blank">-->
+<!--<img src="./imgs/index-carousel.png"/>-->
+<!--</a>-->
+<!--</li>-->
+<!--<li class="item-two">-->
+<!--<a class="carousel-img-link carousel-img-link2" href="#" target="_blank">-->
+<!--<img src="./imgs/index-carousel.png"/>-->
+<!--</a>-->
+<!--</li>-->
+<!--<li class="item-three">-->
+<!--<a class="carousel-img-link carousel-img-link3" href="#" target="_blank">-->
+<!--<img src="./imgs/index-carousel.png"/>-->
+<!--</a>-->
+<!--</li>-->
+<!--<li class="item-four">-->
+<!--<a class="carousel-img-link carousel-img-link4" href="#" target="_blank">-->
+<!--<img src="./imgs/index-carousel.png"/>-->
+<!--</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--<ul class="carousel-dot">-->
+<!--<li><a class="active carousel-dot-one" href="#"></a></li>-->
+<!--<li><a class="carousel-dot-two" href="#"></a></li>-->
+<!--<li><a class="carousel-dot-three" href="#"></a></li>-->
+<!--<li><a class="carousel-dot-four" href="#"></a></li>-->
+<!--</ul>-->
+<!--<a class="carousel-control carousel-left-control" href="#"></a>-->
+<!--<a class="carousel-control carousel-right-control" href="#"></a>-->
+
+<!--</div>-->
+
+<!--
+<div class="bs-example">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="/static/imgs/index-carousel.png"/>
+            </div>
+            <div class="item">
+                <img src="/static/imgs/index-carousel.png"/>
+            </div>
+            <div class="item">
+                <img src="/static/imgs/index-carousel.png"/>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left">
+            </span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right">
+            </span>
+        </a>
+    </div>
+</div>
+-->
+<div class="main-content">
+<div class="left-content">
+    <div class="top-padding"></div>
+    <ul class="left-nav">
+        <li><a class="active" href="#">推荐视频</a></li>
+		{% foreach item=video from=$video_list %}
+        <li><a href="#">{% $video.wd %}</a></li>
+		{% /foreach %}
+    </ul>
+    <div class="hot-video-wrap">
+        <p class="hot-video-top-title">热门视频</p>
+
+        <div class="hot-video-right-icon"></div>
+        <ul class="hot-video-list">
+            <li>
+                <a class="hot-video-link" href="#">
+                    <img src="./imgs/index-hot-video.png"/>
+                </a>
+                <a class="hot-video-title-link" href="#">
+                    <p class="hot-video-title">湖人惜败开拓者集锦</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="right-content">
+<div class="left-tab-content">
+    <div class="tab-nav">
+        <a class="left-active-nav">火箭</a>
+        <span></span>
+        <a class="tab-nav-more">更多>></a>
+    </div>
+    <!-- End tab-nav-->
+    <div class="tab-content">
+        <div class="video-block-one ">
+            <a class="left-control active"></a>
+
+            <div class="video-list-one">
+                <ul class="video-list">
+                    <li class="item">
+                        <a class="video-link" href="#">
+                            <img src="./imgs/index-video.png"/>
+                        </a>
+                        <a class="video-title-link" href="#">
+                            鹈鹕三加时胜公牛集锦霍利迪2.6秒制胜一投
+                        </a>
+
+                        <div class="data-praise-information">
+                            <span class="data">2013-12-03</span>
+                            <a class="red-heart" href="#">5352</a>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <a class="video-link" href="#">
+                            <img src="./imgs/index-video.png"/>
+                        </a>
+                        <a class="video-title-link" href="#">
+                            鹈鹕三加时胜公牛集锦霍利迪2.6秒制胜一投
+                        </a>
+
+                        <div class="data-praise-information">
+                            <span class="data">2013-12-03</span>
+                            <a class="red-heart" href="#">5352</a>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <a class="video-link" href="#">
+                            <img src="./imgs/index-video.png"/>
+                        </a>
+                        <a class="video-title-link" href="#">
+                            鹈鹕三加时胜公牛集锦霍利迪2.6秒制胜一投
+                        </a>
+
+                        <div class="data-praise-information">
+                            <span class="data">2013-12-03</span>
+                            <a class="red-heart" href="#">5352</a>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <a class="video-link" href="#">
+                            <img src="./imgs/index-video.png"/>
+                        </a>
+                        <a class="video-title-link" href="#">
+                            鹈鹕三加时胜公牛集锦霍利迪2.6秒制胜一投
+                        </a>
+
+                        <div class="data-praise-information">
+                            <span class="data">2013-12-03</span>
+                            <a class="red-heart" href="#">5352</a>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <a class="video-link" href="#">
+                            <img src="./imgs/index-video.png"/>
+                        </a>
+                        <a class="video-title-link" href="#">
+                            鹈鹕三加时胜公牛集锦霍利迪2.6秒制胜一投
+                        </a>
+
+                        <div class="data-praise-information">
+                            <span class="data">2013-12-03</span>
+                            <a class="red-heart" href="#">5352</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <a class="right-control"></a>
+        </div>
+        <!-- End video-list-one-->
+        <!-- End video-block-one-->
+        <span class="video-block-spacebar"></span>
+
+        <div class="video-block-two ">
+            <a class="left-control"></a>
+
+            <div class="video-list-two">
+                <ul class="video-list">
+                    <li class="item">
+                        <a class="video-link" href="#">
+                            <img src="./imgs/index-video.png"/>
+                        </a>
+                        <a class="video-title-link" href="#">
+                            鹈鹕三加时胜公牛集锦霍利迪2.6秒制胜一投
+                        </a>
+
+                        <div class="data-praise-information">
+                            <span class="data">2013-12-03</span>
+                            <a class="red-heart" href="#">5352</a>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <a class="video-link" href="#">
+                            <img src="./imgs/index-video.png"/>
+                        </a>
+                        <a class="video-title-link" href="#">
+                            鹈鹕三加时胜公牛集锦霍利迪2.6秒制胜一投
+                        </a>
+
+                        <div class="data-praise-information">
+                            <span class="data">2013-12-03</span>
+                            <a class="red-heart" href="#">5352</a>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <a class="video-link" href="#">
+                            <img src="./imgs/index-video.png"/>
+                        </a>
+                        <a class="video-title-link" href="#">
+                            鹈鹕三加时胜公牛集锦霍利迪2.6秒制胜一投
+                        </a>
+
+                        <div class="data-praise-information">
+                            <span class="data">2013-12-03</span>
+                            <a class="red-heart" href="#">5352</a>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <a class="video-link" href="#">
+                            <img src="./imgs/index-video.png"/>
+                        </a>
+                        <a class="video-title-link" href="#">
+                            鹈鹕三加时胜公牛集锦霍利迪2.6秒制胜一投
+                        </a>
+
+                        <div class="data-praise-information">
+                            <span class="data">2013-12-03</span>
+                            <a class="red-heart" href="#">5352</a>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <a class="video-link" href="#">
+                            <img src="./imgs/index-video.png"/>
+                        </a>
+                        <a class="video-title-link" href="#">
+                            鹈鹕三加时胜公牛集锦霍利迪2.6秒制胜一投
+                        </a>
+
+                        <div class="data-praise-information">
+                            <span class="data">2013-12-03</span>
+                            <a class="red-heart" href="#">5352</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- End video-list-one-->
+            <a class="right-control"></a>
+        </div>
+        <!-- End video-block-two-->
+    </div>
+    <!--End tab-content-->
+</div>
+<!--End left-tab-content-->
+<div class="recent-match">
+    <div class="match today-match">
+        <p class="match-title today-match-title">
+            <span class="tv-icon"></span>
+            <span class="date">今天</span>
+            - 11场比赛
+        </p>
+
+        <div class="match-block match-block-one">
+            <a class="left-control active" href="#"></a>
+            <ul class="match-list today-match-list">
+                <li class="match-item1">
+                    <a class="match-link today-match-link" href="#">
+                        <div class="team-A">
+                            <span class="team-name">雄鹿</span>
+                            <span class="score">77</span>
+                        </div>
+                        <div class="team-B">
+                            <span class="team-name">步行者</span>
+                            <span class="score">104</span>
+                        </div>
+                        <span class="mask">结束</span>
+
+                    </a>
+                </li>
+                <li class="match-item2">
+                    <a class="match-link today-match-link" href="#">
+                        <div class="team-A">
+                            <span class="team-name">雄鹿</span>
+                            <span class="score">77</span>
+                        </div>
+                        <div class="team-B">
+                            <span class="team-name">步行者</span>
+                            <span class="score">104</span>
+                        </div>
+                        <span class="mask">结束</span>
+
+                    </a>
+                </li>
+                <li class="match-item3">
+                    <a class="match-link today-match-link" href="#">
+                        <div class="team-A">
+                            <span class="team-name">雄鹿</span>
+                            <span class="score">77</span>
+                        </div>
+                        <div class="team-B">
+                            <span class="team-name">步行者</span>
+                            <span class="score">104</span>
+                        </div>
+                        <span class="mask">结束</span>
+
+                    </a>
+                </li>
+                <li class="match-item4">
+                    <a class="match-link today-match-link" href="#">
+                        <div class="team-A">
+                            <span class="team-name">雄鹿</span>
+                            <span class="score">77</span>
+                        </div>
+                        <div class="team-B">
+                            <span class="team-name">步行者</span>
+                            <span class="score">104</span>
+                        </div>
+                        <span class="mask">结束</span>
+
+                    </a>
+                </li>
+                <li class="match-item5">
+                    <a class="match-link today-match-link" href="#">
+                        <div class="team-A">
+                            <span class="team-name">雄鹿</span>
+                            <span class="score">77</span>
+                        </div>
+                        <div class="team-B">
+                            <span class="team-name">步行者</span>
+                            <span class="score">104</span>
+                        </div>
+                        <span class="mask">结束</span>
+
+                    </a>
+                </li>
+                <li class="match-item6">
+                    <a class="match-link today-match-link" href="#">
+                        <div class="team-A">
+                            <span class="team-name">雄鹿</span>
+                            <span class="score">77</span>
+                        </div>
+                        <div class="team-B">
+                            <span class="team-name">步行者</span>
+                            <span class="score">104</span>
+                        </div>
+                        <span class="mask">结束</span>
+
+                    </a>
+                </li>
+            </ul>
+            <a class="right-control" href="#"></a>
+        </div>
+
+    </div>
+    <div class="match last-match">
+        <p class="match-title last-match-title">
+            <span class="tv-icon"></span>
+            <span class="date">星期日 11月17日</span>
+            - 11场比赛
+        </p>
+
+        <div class="match-block match-block-two">
+            <a class="left-control" href="#"></a>
+            <ul class="match-list last-match-list">
+                <li class="match-item1">
+                    <a class="match-link last-match-link" href="#">
+                        <div class="team-A">
+                            <span class="team-name">雄鹿</span>
+                            <span class="score">77</span>
+                        </div>
+                        <div class="team-B">
+                            <span class="team-name">步行者</span>
+                            <span class="score">104</span>
+                        </div>
+                        <span class="mask">结束</span>
+
+                    </a>
+                </li>
+                <li class="match-item2">
+                    <a class="match-link last-match-link" href="#">
+                        <div class="team-A">
+                            <span class="team-name">雄鹿</span>
+                            <span class="score">77</span>
+                        </div>
+                        <div class="team-B">
+                            <span class="team-name">步行者</span>
+                            <span class="score">104</span>
+                        </div>
+                        <span class="mask">结束</span>
+
+                    </a>
+                </li>
+                <li class="match-item3">
+                    <a class="match-link last-match-link" href="#">
+                        <div class="team-A">
+                            <span class="team-name">雄鹿</span>
+                            <span class="score">77</span>
+                        </div>
+                        <div class="team-B">
+                            <span class="team-name">步行者</span>
+                            <span class="score">104</span>
+                        </div>
+                        <span class="mask">结束</span>
+
+                    </a>
+                </li>
+                <li class="match-item4">
+                    <a class="match-link last-match-link" href="#">
+                        <div class="team-A">
+                            <span class="team-name">雄鹿</span>
+                            <span class="score">77</span>
+                        </div>
+                        <div class="team-B">
+                            <span class="team-name">步行者</span>
+                            <span class="score">104</span>
+                        </div>
+                        <span class="mask">结束</span>
+
+                    </a>
+                </li>
+                <li class="match-item5">
+                    <a class="match-link last-match-link" href="#">
+                        <div class="team-A">
+                            <span class="team-name">雄鹿</span>
+                            <span class="score">77</span>
+                        </div>
+                        <div class="team-B">
+                            <span class="team-name">步行者</span>
+                            <span class="score">104</span>
+                        </div>
+                        <span class="mask">结束</span>
+
+                    </a>
+                </li>
+                <li class="match-item6">
+                    <a class="match-link last-match-link" href="#">
+                        <div class="team-A">
+                            <span class="team-name">雄鹿</span>
+                            <span class="score">77</span>
+                        </div>
+                        <div class="team-B">
+                            <span class="team-name">步行者</span>
+                            <span class="score">104</span>
+                        </div>
+                        <span class="mask">结束</span>
+
+                    </a>
+                </li>
+            </ul>
+            <a class="right-control" href="#"></a>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--End -->
+{% include file="footer.html" %}
+<!--End footer-->
+
+<!--<div class="cover-for-test"></div>-->
+</body>
+</html>

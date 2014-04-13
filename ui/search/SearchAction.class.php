@@ -1,9 +1,4 @@
 <?php
-/** 
- * @file SearchAction.class.php
- * @brief 视频首页action
- */
-
 class SearchAction extends Action
 {
 	
@@ -14,6 +9,7 @@ class SearchAction extends Action
 		parse_str($request_uri['query']);
 
 		$urlparams['wd'] = $wd;
+		$urlparams['p'] = isset($p) ? max($p,1) : 1;
 		
 		$context->setProperty('urlparams', $urlparams);
 	}
@@ -23,41 +19,32 @@ class SearchAction extends Action
         $timer = new Timer(true);
         $timer->start();
 
-        $context->setProperty('urlparams', $urlparams);
 		$this->parse_url($context);
         $urlparams = $context->getProperty('urlparams');
 
         $service = new SearchService();
 
-
-        $hc_list = 0;
-        $res_num_list = 0;
+        $hc_search = 0;
+        $res_num_list = 20;
 		$total_num = 0;
-		$offset = 0;
-        $video_list = $service->find_list($urlparams, $offset, $res_num_list, $total_num, $hc_list);
-
-        $urlparams = $context->getProperty('urlparams');
+		$offset = ($urlparams['p']-1)*$res_num_list;
+        $video_list = $service->find_list($urlparams, $offset, $res_num_list, $total_num, $hc_search);
 
 
-        $pager = new Pager($urlprefix, $res_num_search, $urlparams['pn'], $this->rn);
-        $pagebar = $pager->get_html();
+        //$pager = new Pager($urlprefix, $res_num_search, $urlparams['pn'], $this->rn);
+        //$pagebar = $pager->get_html();
 
-//————————————————debug——————————————————————————
-echo '<pre>';
-print_r ($video_list);
-echo '</pre>';
-exit();
-//————————————————debug——————————————————————————
-        // fill tpl variables        
         $tpl = SimpleTemplate::getInstance();
 
-        $this->tpl->assign('baseurl',$context->getProperty('baseurl'));
-        $this->tpl->assign('pagebar',$pagebar);
-        $this->tpl->assign('total_num',$res_num_search);
+		//$tpl->setTemplateDir(TEMPLATE_PATH);
+        //$tpl->assign('baseurl',$context->getProperty('baseurl'));
+        //$tpl->assign('pagebar',$pagebar);
+        $tpl->assign('total_num',$total_num);
 
 
-        $this->tpl->show('page/search/search.tpl');
-
+		$tpl->assign('video_list',$video_list);
+        $tpl->show(SearchConfig::$tpl_name);
+		
         $timer->stop();
         CLogger::notice('', 0, 
             array('action'=>'SearchAction', 'hc_search'=>$hc_search,

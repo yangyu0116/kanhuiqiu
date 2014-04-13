@@ -35,7 +35,7 @@ class BaseModel
         }
         else
         {
-            CLogger::debug('db query, sql: '.$sql);
+            //CLogger::debug('db query, sql: '.$sql);
         }
         return $ret;
     } 

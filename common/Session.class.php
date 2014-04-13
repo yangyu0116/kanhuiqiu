@@ -14,18 +14,23 @@ class Session
 
 		$uid = $uname = '';
 		if (!empty($cookie_user_info)){
-			list($uid,$uname) = explode("\t", self::str_code($cookie_user_info,'DECODE'));
+			//$tmp_user_info = explode("\t", self::str_code($cookie_user_info,'DECODE'));
+			//$uid = $tmp_user_info[0];
+			$uname = isset($tmp_user_info[1]) ? $tmp_user_info : '';
 			//$decode_cookie_user_info = self::_decrypt($cookie_user_info);
+
+			$uid = self::_decrypt($cookie_user_info);
 		}
 
 		if (empty($uid)){
 			$uid = GlobalConfig::$timestamp.rand(0,1000);
 
-			$this->storage = new Storage('kanhuiqiu');
-			$m_user = new UserModel(UserConfig::$cache_config, $this->storage->db, null);
+			$storage = new Storage('kanhuiqiu');
+			$m_user = new UserModel(UserConfig::$cache_config, $storage->db, null);
 			$m_user->add_cookie_user($uid);
 
-			$cookie_val = self::str_code($uid,'ENCODE');
+			//$cookie_val = self::str_code($uid,'ENCODE');
+			$cookie_val = self::_encrypt($uid);
 			self::set_cookie('user', $cookie_val);
 		}
 

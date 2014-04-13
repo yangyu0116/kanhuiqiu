@@ -1,12 +1,4 @@
 <?php
-
-/**
- * Timer - 计时器，可选ms/s级精度，支持累加
- *
- * @author: zhangdongjin@baidu.com
- * @note: 内部采用us计时，不会导致累加误差
- */
-
 class Timer
 {
     const PRECISION_MS = 1;
