@@ -68,7 +68,7 @@ class SearchService
 		
 		$arrList = array();
 		$intOffset = 0;
-		$intNum = 20;
+		$intNum = SearchConfig::$page_num;
 		$intResCount = 0;
 		foreach ($lst_param as $param){
 

@@ -25,7 +25,7 @@ class SearchAction extends Action
         $service = new SearchService();
 
         $hc_search = 0;
-        $res_num_list = 20;
+        $res_num_list = SearchConfig::$page_num;
 		$total_num = 0;
 		$offset = ($urlparams['p']-1)*$res_num_list;
         $video_list = $service->find_list($urlparams, $offset, $res_num_list, $total_num, $hc_search);
