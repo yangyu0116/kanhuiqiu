@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% $smarty.get.wd %} - 搜索结果 - 看会球</title>
+    <title>{% wd %} - 搜索结果 - 看会球</title>
     <meta charset="utf-8"/>
     <link href="/static/vendor/css/normalize.css" rel="stylesheet"/>
     <link href="/static/css/search-common.css" rel="stylesheet"/>
@@ -13,7 +13,7 @@
             <div class="logo"></div>
             <div class="input-group">
 				<FORM method="get" action="/s?">
-					<input type="text" class="form-control" name="wd" value="{% $smarty.get.wd %}"/>
+					<input type="text" class="form-control" name="wd" value="{% $wd %}"/>
 					<span class="input-group-btn">
 						<button class="btn btn-default" type="submit"></button>
 					</span>
@@ -37,7 +37,7 @@
     </div>
     <div id="content">
         <div class="search-key">
-            <a class="search-key-link" href="#">{% $smarty.get.wd %}</a>
+            <a class="search-key-link" href="#">{% $wd %}</a>
             <a class="search-result-amount" href="#">找到 {% $total_num %} 条结果</a>
         </div>
         <div class="search-result-video" id="result">
@@ -109,7 +109,7 @@ function SearchHighlight(idVal,keyword)
     } 
         pucl.innerHTML=temp; 
 } 
-SearchHighlight("result", "{% $smarty.get.wd %}"); 
+SearchHighlight("result", "{% $wd %}"); 
 </script>
 </body>
 </html>

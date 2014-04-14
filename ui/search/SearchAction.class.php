@@ -40,7 +40,8 @@ class SearchAction extends Action
         //$tpl->assign('baseurl',$context->getProperty('baseurl'));
         //$tpl->assign('pagebar',$pagebar);
         $tpl->assign('total_num',$total_num);
-
+		$tpl->assign('wd',$urlparams['wd']);
+		
 
 		$tpl->assign('video_list',$video_list);
         $tpl->show(SearchConfig::$tpl_name);

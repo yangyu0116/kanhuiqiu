@@ -24,7 +24,7 @@ class UserModel extends BaseModel
 			$this->do_sql('delete from `'.$this->search_history_table.'` where uid="'.$uid.'" order by orderby asc,id asc limit 1');
 		}
 
-		$sql = 'insert into `'.$this->search_history_table.'` set uid="'.$uid.'",uname="'.$unamme.'",wd="'.$wd.'"';
+		$sql = 'insert into `'.$this->search_history_table.'` set uid="'.$uid.'",uname="'.$uname.'",wd="'.$wd.'"';
 		$this->do_sql($sql);
 
 		return true;
