@@ -41,7 +41,7 @@ class Session
     }  
 
 	public static function get_cookie_var($var){
-		return $_COOKIE[self::$cookie_pre.$var];
+		return isset($_COOKIE[self::$cookie_pre.$var]) ? $_COOKIE[self::$cookie_pre.$var] : '';
 	}
 
 	public static function set_cookie($ck_var, $ck_value, $ck_time='F', $httponly = true){
@@ -52,13 +52,13 @@ class Session
 			$db_ckpath = '/';
 			$db_ckdomain = '';
 		} else {
-			if (!$db_ckdomain) {
+			if (!isset($db_ckdomain)) {
 				$pre_host = strtolower(substr($_SERVER['HTTP_HOST'],0,strpos($_SERVER['HTTP_HOST'],'.'))+1);
 				$db_ckdomain = substr($_SERVER['HTTP_HOST'],strpos($_SERVER['HTTP_HOST'],'.')+1);
 				$db_ckdomain = '.'.((strpos($db_ckdomain,'.')===false) ? $_SERVER['HTTP_HOST'] : $db_ckdomain);
-				if (strpos($B_url,$pre_host)!==false) {
+				//if (strpos($B_url,$pre_host)!==false) {
 					$db_ckdomain = $pre_host.$db_ckdomain;
-				}
+				//}
 			}
 		}
 		if ($ck_time=='F') {
