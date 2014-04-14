@@ -8,7 +8,7 @@ class SearchAction extends Action
 		$request_uri = parse_url($_SERVER['REQUEST_URI']);
 		parse_str($request_uri['query']);
 
-		$urlparams['wd'] = $wd;
+		$urlparams['wd'] = urldecode($wd);
 		$urlparams['p'] = isset($p) ? max($p,1) : 1;
 		
 		$context->setProperty('urlparams', $urlparams);
