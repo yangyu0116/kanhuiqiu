@@ -1,17 +1,17 @@
 <?php
 /** 
  * @file Pager.class.php
- * @brief ·­Ò³Ä£¿é
+ * @brief ç¿»é¡µæ¨¡å—
  */
 class Pager 
 {
-    protected $pn;    //Ò³Âë
-    protected $rn;    //Ã¿Ò³½á¹ûÊı
-    protected $tn;    //×Ü¹²½á¹ûÊı
-    protected $url_prefix;    //urlÇ°×º
+    protected $pn;    //é¡µç 
+    protected $rn;    //æ¯é¡µç»“æœæ•°
+    protected $tn;    //æ€»å…±ç»“æœæ•°
+    protected $url_prefix;    //urlå‰ç¼€
 
-    protected $pn_num;    //µ±Ç°Ò³µÄÇ°ºóÒ³ÂëÊı
-    protected $type; //Ò³ÂëÀàĞÍ£º0:µ¥Î»Ôö¼õ ; 1:rnÔö¼õ
+    protected $pn_num;    //å½“å‰é¡µçš„å‰åé¡µç æ•°
+    protected $type; //é¡µç ç±»å‹ï¼š0:å•ä½å¢å‡ ; 1:rnå¢å‡
 
     protected $pager_html;
     protected $pager_html2;
@@ -19,10 +19,10 @@ class Pager
     /** 
      * @brief 
      * 
-     * @param $_url_prefix    urlÇ°×º£¬ºó±ß²¹ÉÏ&pn=X
-     * @param $_tn    ×ÜÊıÄ¿
-     * @param $_pn    µ±Ç°Ò³Âë
-     * @param $_rn    Ã¿Ò³¼ÇÂ¼Êı
+     * @param $_url_prefix    urlå‰ç¼€ï¼Œåè¾¹è¡¥ä¸Š&pn=X
+     * @param $_tn    æ€»æ•°ç›®
+     * @param $_pn    å½“å‰é¡µç 
+     * @param $_rn    æ¯é¡µè®°å½•æ•°
      * 
      * @return 
      */
@@ -58,19 +58,19 @@ class Pager
             $first_id = intval($this->pn/$this->rn)*$this->rn+1;
         }
 
-        // 1,ÎŞĞ§Ò³Âë
+        // 1,æ— æ•ˆé¡µç 
         if ($first_id > $total_num || $first_id <= 0)
         {
             return;
         }
 
-        // 2,Ğ¡ÓÚ1Ò³
+        // 2,å°äº1é¡µ
         if ($total_num <= $this->rn)
         {
             return;
         }
 
-        // 3,¶àÒ³
+        // 3,å¤šé¡µ
         if ($this->type === 0)
         {
             $min_pn = 1;
@@ -104,16 +104,16 @@ class Pager
 
             if ($this->pn != 1)
             {
-                $html = sprintf("<a href='%s".$this->and."pn".$this->op."%d'>ÉÏÒ»Ò³</a>", $this->url_prefix, $this->pn-1);
-                $html2 = sprintf("<a href='%s".$this->and."pn".$this->op."%d' class='page-ctrl'>&lt;ÉÏÒ»Ò³</a>", $this->url_prefix, $this->pn-1);
+                $html = sprintf("<a href='%s".$this->and."pn".$this->op."%d'>ä¸Šä¸€é¡µ</a>", $this->url_prefix, $this->pn-1);
+                $html2 = sprintf("<a href='%s".$this->and."pn".$this->op."%d' class='page-ctrl'>&lt;ä¸Šä¸€é¡µ</a>", $this->url_prefix, $this->pn-1);
                 $this->pager_html = $html.$this->pager_html; 
                 $this->pager_html2 = $html2.$this->pager_html2; 
             }
 
             if ($this->pn != $max_pn)
             {
-                $html = sprintf("<a href='%s".$this->and."pn".$this->op."%d'>ÏÂÒ»Ò³</a>", $this->url_prefix, $this->pn+1);
-                $html2 = sprintf("<a href='%s".$this->and."pn".$this->op."%d' class='page-ctrl'>ÏÂÒ»Ò³&gt;</a>", $this->url_prefix, $this->pn+1);
+                $html = sprintf("<a href='%s".$this->and."pn".$this->op."%d'>ä¸‹ä¸€é¡µ</a>", $this->url_prefix, $this->pn+1);
+                $html2 = sprintf("<a href='%s".$this->and."pn".$this->op."%d' class='page-ctrl'>ä¸‹ä¸€é¡µ&gt;</a>", $this->url_prefix, $this->pn+1);
                 $this->pager_html = $this->pager_html.$html;
                 $this->pager_html2 = $this->pager_html2.$html2;
             }
@@ -152,16 +152,16 @@ class Pager
             
             if ($pn != 1)
             {
-                $html = sprintf("<a href='%s".$this->and."pn".$this->op."%d'>ÉÏÒ»Ò³</a>", $this->url_prefix, ($pn-2)*$this->rn);
-                $html2 = sprintf("<a href='%s".$this->and."pn".$this->op."%d' class='page-ctrl'>&lt;ÉÏÒ»Ò³</a>", $this->url_prefix, ($pn-2)*$this->rn);
+                $html = sprintf("<a href='%s".$this->and."pn".$this->op."%d'>ä¸Šä¸€é¡µ</a>", $this->url_prefix, ($pn-2)*$this->rn);
+                $html2 = sprintf("<a href='%s".$this->and."pn".$this->op."%d' class='page-ctrl'>&lt;ä¸Šä¸€é¡µ</a>", $this->url_prefix, ($pn-2)*$this->rn);
                 $this->pager_html = $html.$this->pager_html; 
                 $this->pager_html2 = $html2.$this->pager_html2; 
             }
 
             if ($pn != $max_pn)
             {
-                $html = sprintf("<a href='%s".$this->and."pn".$this->op."%d'>ÏÂÒ»Ò³</a>", $this->url_prefix, ($pn)*$this->rn);
-                $html2 = sprintf("<a href='%s".$this->and."pn".$this->op."%d' class='page-ctrl'>ÏÂÒ»Ò³&gt;</a>", $this->url_prefix, ($pn)*$this->rn);
+                $html = sprintf("<a href='%s".$this->and."pn".$this->op."%d'>ä¸‹ä¸€é¡µ</a>", $this->url_prefix, ($pn)*$this->rn);
+                $html2 = sprintf("<a href='%s".$this->and."pn".$this->op."%d' class='page-ctrl'>ä¸‹ä¸€é¡µ&gt;</a>", $this->url_prefix, ($pn)*$this->rn);
                 $this->pager_html = $this->pager_html.$html;
                 $this->pager_html2 = $this->pager_html2.$html2;
             }
@@ -170,7 +170,7 @@ class Pager
     }
 
     /** 
-     * @brief »ñÈ¡Éú³ÉµÄhtml´úÂë
+     * @brief è·å–ç”Ÿæˆçš„htmlä»£ç 
      * 
      * @return 
      */
@@ -180,7 +180,7 @@ class Pager
     }
 
     /** 
-     * @brief »ñÈ¡Éú³ÉµÄhtml2´úÂë
+     * @brief è·å–ç”Ÿæˆçš„html2ä»£ç 
      * 
      * @return 
      */

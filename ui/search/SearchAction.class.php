@@ -25,20 +25,22 @@ class SearchAction extends Action
         $service = new SearchService();
 
         $hc_search = 0;
-        $res_num_list = SearchConfig::$page_num;
+        $page_num = SearchConfig::$page_num;
 		$total_num = 0;
-		$offset = ($urlparams['p']-1)*$res_num_list;
-        $video_list = $service->find_list($urlparams, $offset, $res_num_list, $total_num, $hc_search);
+		$offset = ($urlparams['p']-1)*$page_num;
+        $video_list = $service->find_list($urlparams, $offset, $page_num, $total_num, $hc_search);
 
 
-        //$pager = new Pager($urlprefix, $res_num_search, $urlparams['pn'], $this->rn);
-        //$pagebar = $pager->get_html();
+		$urlprefix = '/s?wd='.$urlparams['wd'];
+		//$total_pn = ceil($total_num/$page_num);
+        $pager = new Pager($urlprefix, $total_num, $urlparams['p'], $page_num);
+        $pagebar = $pager->get_html();
 
         $tpl = SimpleTemplate::getInstance();
 
 		//$tpl->setTemplateDir(TEMPLATE_PATH);
         //$tpl->assign('baseurl',$context->getProperty('baseurl'));
-        //$tpl->assign('pagebar',$pagebar);
+        $tpl->assign('pagebar',$pagebar);
         $tpl->assign('total_num',$total_num);
 		$tpl->assign('wd',$urlparams['wd']);
 		
