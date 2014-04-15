@@ -40,17 +40,13 @@ class StringTool
 		return $val;
 	}
 		//封装jsonp数据生成接口，防止xss
-	public static function gen_jsonp($array,$callback,$input_charset="gbk"){
+	public static function gen_jsonp($array,$callback,$input_charset="utf-8"){
         if(preg_match('/[A-Za-z0-9_]+/', $callback, $match)){
             $callback =  $match[0];
         }
         else{
 			$callback="";
         }
-		if($input_charset!="utf-8"||$input_charset!="UTF-8"){
-			$array=EncodeHelper::mb_convert_array_deep($array,$input_charset,"utf-8");
-		}
-
         header("Content-Type:application/x-javascript");
 
 		if(!empty($callback)){
