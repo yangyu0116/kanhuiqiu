@@ -23,6 +23,7 @@ class Session
 		}
 
 		if (empty($uid)){
+
 			$uid = GlobalConfig::$timestamp.rand(0,1000);
 
 			$storage = new Storage('kanhuiqiu');
@@ -67,8 +68,14 @@ class Session
 			($ck_value=='' && $ck_time==0) && $ck_time = $timestamp-31536000;
 		}
 
-		return setcookie(self::$cookie_pre.$ck_var, $ck_value, $ck_time, $db_ckpath, $db_ckdomain, self::get_secure(), $httponly);
 
+		$cookie_exec = setcookie(self::$cookie_pre.$ck_var, $ck_value, $ck_time, $db_ckpath, $db_ckdomain, self::get_secure(), $httponly);
+		
+		if ($cookie_exec){
+			$_COOKIE[self::$cookie_pre.$ck_var] = $ck_value;
+		}
+		
+		return true;
 	}
 
 	public static function get_secure(){

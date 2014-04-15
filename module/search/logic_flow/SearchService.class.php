@@ -1,7 +1,8 @@
 <?php
 class SearchService
 {
-    private $storage; 
+    private $storage;
+	private $rec_status; 
 
     public function __construct() 
 	{
@@ -19,7 +20,7 @@ class SearchService
         $arrList = $m_search->find_list($lst_param, $intOffset, $intNum, $intResCount);
 
 		$userinfo = Session::check_login();
-		if ($userinfo){
+		if ($userinfo && !$this->rec_status){
 			$m_user = new UserModel(UserConfig::$cache_config, $this->storage->db, null);
 			$search_list = $m_user->find_user_search_list($userinfo['uid']);
 
@@ -60,11 +61,13 @@ class SearchService
         return $arrList;
     }
 
-	public function find_list_by_array($lst_param)
+	public function find_list_by_array($lst_param, $rec_status = false)
     {
 		if (!is_array($lst_param) || empty($lst_param)){
 			return false;
 		}
+
+		$this->rec_status = $rec_status;
 		
 		$arrList = array();
 		$intOffset = 0;

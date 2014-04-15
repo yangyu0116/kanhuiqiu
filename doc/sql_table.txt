@@ -1,0 +1,158 @@
+-- phpMyAdmin SQL Dump
+-- version 4.1.11
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: 2014-04-15 20:52:20
+-- 服务器版本： 5.00.15
+-- PHP Version: 5.4.26
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `kanhuiqiu`
+--
+
+DELIMITER $$
+--
+-- 存储过程
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `new_procedure`()
+BEGIN
+
+END$$
+
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `tbl_cookie_user`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_cookie_user` (
+  `id` int(10) NOT NULL auto_increment,
+  `uid` varchar(20) NOT NULL,
+  `reg_time` datetime NOT NULL,
+  `reg_ip` varchar(20) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `uid` (`uid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='cookie用户信息' AUTO_INCREMENT=6 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `tbl_player`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_player` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `name` varchar(20) NOT NULL,
+  `en_name` varchar(20) NOT NULL,
+  `full_name` varchar(20) NOT NULL,
+  `alias` varchar(50) NOT NULL,
+  `pic_small` varchar(255) NOT NULL,
+  `pic_middle` varchar(255) NOT NULL,
+  `pic_big` varchar(255) NOT NULL,
+  `team_id` int(10) unsigned NOT NULL default '0',
+  `starting` tinyint(1) unsigned NOT NULL default '0',
+  `position` tinyint(1) NOT NULL default '0',
+  `is_retire` tinyint(1) NOT NULL default '0',
+  PRIMARY KEY  (`id`),
+  KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='ÇòÔ±±í' AUTO_INCREMENT=174 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `tbl_search_history`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_search_history` (
+  `id` int(10) NOT NULL auto_increment,
+  `uid` varchar(20) NOT NULL,
+  `uname` varchar(20) default NULL,
+  `wd` varchar(50) NOT NULL,
+  `orderby` tinyint(1) NOT NULL default '0',
+  `addtime` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`id`),
+  KEY `uid` (`uid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户搜索历史表' AUTO_INCREMENT=20 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `tbl_team`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_team` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(20) NOT NULL,
+  `en_name` varchar(50) NOT NULL,
+  `full_name` varchar(20) NOT NULL,
+  `alias` varchar(50) NOT NULL,
+  `pic_small` varchar(255) NOT NULL,
+  `pic_middle` varchar(255) NOT NULL,
+  `pic_big` varchar(255) NOT NULL,
+  `coach` varchar(20) NOT NULL,
+  `coach_pic` varchar(255) NOT NULL default '',
+  `schedule` mediumtext NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Çò¶Ó±í' AUTO_INCREMENT=31 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `tbl_user`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_user` (
+  `id` int(10) NOT NULL auto_increment,
+  `uid` varchar(20) NOT NULL,
+  `uname` varchar(20) NOT NULL,
+  `reg_time` datetime NOT NULL,
+  `reg_ip` varchar(20) NOT NULL,
+  `last_time` datetime NOT NULL,
+  `last_ip` varchar(20) NOT NULL,
+  `times_limit` datetime NOT NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `uname` (`uname`),
+  KEY `uid` (`uid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户信息' AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `tbl_video`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_video` (
+  `id` int(11) NOT NULL auto_increment,
+  `title` varchar(50) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `urlmd5` char(32) NOT NULL,
+  `pic` varchar(255) NOT NULL,
+  `year` char(4) NOT NULL,
+  `date` char(10) NOT NULL,
+  `addtime` char(19) NOT NULL,
+  `site` varchar(20) NOT NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `urlmd5` USING BTREE (`urlmd5`),
+  FULLTEXT KEY `index_title` (`title`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=2495 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `tbl_video_ugc`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_video_ugc` (
+  `id` int(10) NOT NULL auto_increment,
+  `vid` int(11) NOT NULL,
+  `hits` int(10) NOT NULL default '0',
+  `update_time` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='视频的用户行为信息' AUTO_INCREMENT=1 ;
