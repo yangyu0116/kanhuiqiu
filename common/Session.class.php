@@ -1,7 +1,8 @@
 <?php
 class Session
 {
-	public static $cookie_pre = 'khq_';
+	public static $cookie_pre = 'khq_cookie_';
+	public static $login_cookie_pre = 'khq_user_';
 
 	public static function check_login(){
 
