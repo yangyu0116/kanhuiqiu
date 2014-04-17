@@ -13,14 +13,16 @@ body {
   height: 1666px;
 }
 #header {
-  width: 1440px;
+  width: 1198px;
   height: 60px;
   background-color: #ffffff;
+    margin: 0 auto;
 }
 #header .header-wrap {
-  width: 1210px;
+  width: 1198px;
   height: 60px;
   margin-left: 76px;
+    margin: 0 auto;
 }
 #header .header-wrap .logo {
   display: inline-block;
@@ -229,7 +231,7 @@ body {
 }
 #content .main-content .left-content .left-nav {
   width: 196px;
-  height: 224px;
+  height: 254px;
   list-style: none;
   padding-top: 17px;
   padding-left: 0;

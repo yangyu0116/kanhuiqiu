@@ -4,7 +4,7 @@ body {
 .cover-for-test {
   position: absolute;
   top: 0;
-  background: url("../imgs/search_common-bg.png") no-repeat center top;
+  background: url("/static/imgs/search_common-bg.png") no-repeat center top;
   opacity: 0.4;
   left: 50%;
   width: 1440px;
@@ -31,7 +31,7 @@ body {
   width: 141px;
   height: 50px;
   margin-top: 11px;
-  background: url("../imgs/basketball-icon.png") no-repeat 0 0;
+  background: url("/static/imgs/basketball-icon.png") no-repeat 0 0;
 }
 #main #header .header-wrap .input-group {
   display: inline-block;
@@ -64,7 +64,7 @@ body {
   height: 37px;
   padding: 0;
   border: 0;
-  background: url("../imgs/basketball-icon.png") no-repeat -600px 0;
+  background: url("/static/imgs/basketball-icon.png") no-repeat -600px 0;
 }
 #main #header .header-wrap .team-logo {
   display: inline-block;
@@ -88,18 +88,18 @@ body {
   height: 43px;
 }
 #main #header .header-wrap .team-logo li a.team-logo-one {
-  background: url("../imgs/basketball-icon.png") no-repeat -200px 0;
+  background: url("/static/imgs/basketball-icon.png") no-repeat -200px 0;
 }
 #main #header .header-wrap .team-logo li a.team-logo-two {
-  background: url("../imgs/basketball-icon.png") no-repeat -300px 0;
+  background: url("/static/imgs/basketball-icon.png") no-repeat -300px 0;
 }
 #main #header .header-wrap .team-logo li a.team-logo-three {
-  background: url("../imgs/basketball-icon.png") no-repeat -400px 0;
+  background: url("/static/imgs/basketball-icon.png") no-repeat -400px 0;
   margin-left: -1px;
   margin-top: -1px;
 }
 #main #header .header-wrap .team-logo li a.team-logo-four {
-  background: url("../imgs/basketball-icon.png") no-repeat -500px 0;
+  background: url("/static/imgs/basketball-icon.png") no-repeat -500px 0;
   margin-left: 6px;
   margin-top: -1px;
 }
@@ -124,7 +124,7 @@ body {
   line-height: 34px;
   text-decoration: none;
   padding-left: 49px;
-  background: url("../imgs/padding-image.png") no-repeat -300px -100px;
+  background: url("/static/imgs/padding-image.png") no-repeat -300px -100px;
 }
 #main #header .header-wrap .admin .information-remind {
   display: block;
@@ -133,7 +133,7 @@ body {
   position: absolute;
   top: -7px;
   right: -8px;
-  background: url("../imgs/basketball-icon.png") no-repeat -700px 0;
+  background: url("/static/imgs/basketball-icon.png") no-repeat -700px 0;
   font-family: Arial;
   font-size: 14px;
   text-align: center;
@@ -227,7 +227,7 @@ body {
   color: #bdbebe;
   padding-left: 17px;
   margin-left: 46px;
-  background: url("../imgs/basketball-icon.png") no-repeat -400px -200px;
+  background: url("/static/imgs/basketball-icon.png") no-repeat -400px -200px;
 }
 #main #content .more-result {
   width: 1195px;

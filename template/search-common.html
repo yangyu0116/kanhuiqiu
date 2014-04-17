@@ -8,33 +8,7 @@
 </head>
 <body>
 <div id="main">
-    <div id="header">
-        <div class="header-wrap">
-            <div class="logo"></div>
-            <div class="input-group">
-				<FORM method="get" action="/s?">
-					<input type="text" class="form-control" name="wd" value="{% $wd %}"/>
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="submit"></button>
-					</span>
-				</FORM>
-            </div>
-			<!--
-            <ul class="team-logo">
-                <li><a class="team-logo-one" href="#"></a></li>
-                <li><a class="team-logo-two" href="#"></a></li>
-                <li><a class="team-logo-three" href="#"></a></li>
-                <li><a class="team-logo-four" href="#"></a></li>
-            </ul>
-            <div class="admin">
-                <a class="admin-information" href="#">
-                    admin
-                </a>
-                <span class="information-remind">3</span>
-            </div>
-			-->
-        </div>
-    </div>
+	{% include file="header.html" %}
     <div id="content">
         <div class="search-key">
             <a class="search-key-link" href="#">{% $wd %}</a>
