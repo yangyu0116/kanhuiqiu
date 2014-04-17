@@ -2,6 +2,9 @@
 body {
 /*  height: 1666px; */
 }
+a {
+  text-decoration:none;
+}
 .cover-for-test {
   position: absolute;
   top: 0;
@@ -121,7 +124,6 @@ body {
   font-size: 14px;
   color: #b9b9b9;
   line-height: 34px;
-  text-decoration: none;
   padding-left: 49px;
   background: url("/static/imgs/padding-image.png") no-repeat -300px -100px;
 }
@@ -246,7 +248,6 @@ body {
   font-size: 16px;
   line-height: 30px;
   color: #d4dfed;
-  text-decoration: none;
   border-top: 1px solid #064982;
   border-bottom: 1px solid #064982;
 }
@@ -258,11 +259,10 @@ body {
 #content .main-content .left-content .hot-video-wrap {
   position: relative;
   width: 196px;
-  height: 1000px;
+  height: 690px;
 }
 
 #content .main-content .left-content .hot-video-wrap .hot-video-top-title{
-  text-decoration: none;
   font-family: '微软雅黑';
   font-size: 18px;
   color: #dde4ea;
@@ -292,7 +292,7 @@ body {
 #content .main-content .left-content .hot-video-wrap .hot-video-list li a.hot-video-link {
 /*  display: block;	*/
   width: 142px;
-  heigt: 83px;
+  height: 83px;
  /* border: 2px solid #358dd9;	*/
 }
 #content .main-content .left-content .hot-video-wrap .hot-video-list li a.hot-video-link img {
@@ -306,7 +306,6 @@ body {
   height: 20px;
   margin: 0px 5px -27px -2px;
   padding-top: 7px;
-  text-decoration: none;
 }
 #content .main-content .left-content .hot-video-wrap .hot-video-list li a.hot-video-title-link p.hot-video-title {
   font-family: '宋体';
@@ -324,7 +323,7 @@ body {
 }
 #content .main-content .right-content .left-tab-content {
   width: 972px;
-  height: 579px;
+/*  height: 579px;	*/
   background-color: #ffffff;
   box-shadow: 0 0 3px #e1e5e7;
 }
@@ -356,7 +355,7 @@ body {
   font-family: '宋体';
   font-size: 12px;
   line-height: 37px;
-  margin-left: 705px;
+  margin-left: 805px;
 }
 #content .main-content .right-content .left-tab-content .tab-nav span {
   display: inline-block;
@@ -368,7 +367,7 @@ body {
 }
 #content .main-content .right-content .left-tab-content .tab-content {
   width: 972px;
-  height: 400px;
+/*height: 400px;*/
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one {
   position: relative;
@@ -380,7 +379,7 @@ body {
   display: block;
   position: absolute;
   left: 4px;
-  top: 89px;
+  top: 59px;
   width: 22px;
   height: 22px;
   background: url("/static/imgs/basketball-icon.png") no-repeat -700px -100px;
@@ -393,7 +392,8 @@ body {
   height: 233px;
   margin: 0 auto;
   padding-right: 30px;
-  margin-right: -29px;
+  margin-right: -45px;
+  margin-top: -18px;
   overflow: hidden;
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one .video-list-one ul.video-list {
@@ -408,13 +408,11 @@ body {
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one .video-list-one ul.video-list li a.video-link {
   display: block;
   width: 158px;
-  text-decoration: none;
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one .video-list-one ul.video-list li a.video-title-link {
   display: block;
   width: 158px;
   height: 34px;
-  text-decoration: none;
   margin-top: 10px;
   font-family: '宋体';
   font-size: 12px;
@@ -437,7 +435,6 @@ body {
   display: inline-block;
   width: 25px;
   height: 14px;
-  text-decoration: none;
   font-family: '宋体';
   font-size: 12px;
   color: #bdbebe;
@@ -449,7 +446,7 @@ body {
   display: block;
   position: absolute;
   right: 4px;
-  top: 89px;
+  top: 59px;
   width: 22px;
   height: 22px;
   background: url("/static/imgs/basketball-icon.png") no-repeat -600px -100px;
@@ -502,13 +499,11 @@ body {
   display: block;
   width: 158px;
   height: 142px;
-  text-decoration: none;
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-two .video-list-two ul.video-list li a.video-title-link {
   display: block;
   width: 158px;
   height: 34px;
-  text-decoration: none;
   margin-top: 10px;
   font-family: '宋体';
   font-size: 12px;
@@ -531,7 +526,6 @@ body {
   display: inline-block;
   width: 25px;
   height: 14px;
-  text-decoration: none;
   font-family: '宋体';
   font-size: 12px;
   color: #bdbebe;
@@ -637,7 +631,6 @@ body {
   width: 145px;
   height: 76px;
   background-color: #f0f4f6;
-  text-decoration: none;
 }
 #content .main-content .right-content .recent-match .match .match-block ul.match-list li a.match-link span {
   display: inline-block;
@@ -689,7 +682,6 @@ body {
   margin-bottom: 10px;
 }
 #footer p a {
-  text-decoration: none;
   color: #767879;
 }
 #footer p a.link {

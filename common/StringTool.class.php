@@ -39,7 +39,7 @@ class StringTool
 
 		return $val;
 	}
-		//·â×°jsonpÊı¾İÉú³É½Ó¿Ú£¬·ÀÖ¹xss
+		//å°è£…jsonpæ•°æ®ç”Ÿæˆæ¥å£ï¼Œé˜²æ­¢xss
 	public static function gen_jsonp($array,$callback,$input_charset="utf-8"){
         if(preg_match('/[A-Za-z0-9_]+/', $callback, $match)){
             $callback =  $match[0];
@@ -118,10 +118,10 @@ class StringTool
 	}
 
 	/** 
-		* @brief Éú³ÉmemcachedµÄkey
+		* @brief ç”Ÿæˆmemcachedçš„key
 		* 
-		* @param $subsys ×ÓÏµÍ³Ãû³Æ
-		* @param $custom ×Ô¶¨Òå²¿·Ö
+		* @param $subsys å­ç³»ç»Ÿåç§°
+		* @param $custom è‡ªå®šä¹‰éƒ¨åˆ†
 		* 
 		* @return 
 	 */
@@ -141,7 +141,7 @@ class StringTool
 			intval($date_element[1]),intval($date_element[2]),intval($date_element[0]));
 	}
 
-    //¼ÆËã³éÑù±ÈÂÊ
+    //è®¡ç®—æŠ½æ ·æ¯”ç‡
     public static function sample_rate($field)
     {
         $hash_str = md5($field);
@@ -158,7 +158,7 @@ class StringTool
 
 
 	/**
-	 * @brief Éú³ÉÍâÕ¾¿ÉÒÔ·ÃÎÊµÄÍ¼Æ¬µØÖ·
+	 * @brief ç”Ÿæˆå¤–ç«™å¯ä»¥è®¿é—®çš„å›¾ç‰‡åœ°å€
 	 *
 	 * @param [in] string $img string to be checked
 	 * @return  $img 
@@ -166,7 +166,7 @@ class StringTool
 	**/
 	public static function get_no_refer_img($img, $width = 0, $height = 0)
     {
-		//Ê¹ÓÃÍ¼ÔÆÑ¹Í¼¹©µÚÈı·½Ê¹ÓÃ
+		//ä½¿ç”¨å›¾äº‘å‹å›¾ä¾›ç¬¬ä¸‰æ–¹ä½¿ç”¨
 		$key = 'wisetimgkey_noexpire_3f60e7362b8c23871c7564327a31d9d7';
 		$sec = '1366351082';
 		$src = $img;

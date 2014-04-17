@@ -84,9 +84,9 @@
 <div class="left-content">
     <div class="top-padding"></div>
     <ul class="left-nav">
-        <li><a class="active" href="#">首页</a></li>
+        <li><a class="{% if !$valid_wd %}active{% /if %}" href="/">首页</a></li>
 		{% foreach item=video from=$video_list %}
-        <li><a href="#">{% $video.wd %}</a></li>
+        <li><a class="{% if $valid_wd && $smarty.get.wd==$video.wd %}active{% /if %}" href="/?wd={% $video.wd %}">{% $video.wd %}</a></li>
 		{% /foreach %}
     </ul>
     <div class="hot-video-wrap">
@@ -114,23 +114,23 @@
 	{% foreach item=video from=$video_list %}
 
     <div class="tab-nav">
-        <a class="left-active-nav">{% $video.wd %}</a>
+        <a class="left-active-nav" href="/s?wd={% $video.wd %}" target="_blank">{% $video.wd %}</a>
         <span></span>
-        <a class="tab-nav-more">更多>></a>
+        <a class="tab-nav-more" href="/s?wd={% $video.wd %}" target="_blank">更多>></a>
     </div>
     <!-- End tab-nav-->
     <div class="tab-content">
         <div class="video-block-one ">
-            <a class="left-control active"></a>
+            <a class="left-control"></a>
 
             <div class="video-list-one">
                 <ul class="video-list">
 				{% foreach item=v from=$video.videos %}
                     <li class="item">
-                        <a class="video-link" href="#">
+                        <a class="video-link" href="{% $v.url %}" title="{% $v.title %}" target="_blank">
                             <img src="{% $v.pic %}"/>
                         </a>
-                        <a class="video-title-link" href="#">
+                        <a class="video-title-link" href="{% $v.url %}" title="{% $v.title %}" target="_blank">
                             {% $v.title %}
                         </a>
 
@@ -142,17 +142,17 @@
 					{% /foreach %}
                 </ul>
             </div>
-            <a class="right-control"></a>
+            <a class="right-control active"></a>
         </div>
         <!-- End video-list-one-->
     </div>
-
 	{% /foreach %}
     <!--End tab-content-->
 </div>
 <!--End left-tab-content-->
 
 <div class="recent-match">
+	<!--
     <div class="match today-match">
         <p class="match-title today-match-title">
             <span class="tv-icon"></span>
@@ -182,6 +182,7 @@
         </div>
 
     </div>
+	-->
 	<!--
     <div class="match last-match">
         <p class="match-title last-match-title">
@@ -239,7 +240,7 @@ $(function(){
                     lis+="<a class='hot-video-title-link' href='"+ ite.url +"' target=_blank>";
                     lis+="<p class='hot-video-title' title='"+ ite.title +"'>"+ ite.title +"</p></a>";                
                     lis+="</li>";
-					if (i==5){
+					if (i==3){
 						return false;
 					}else{
 						i++;
