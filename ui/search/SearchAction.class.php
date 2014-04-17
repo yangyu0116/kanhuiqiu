@@ -8,7 +8,7 @@ class SearchAction extends Action
 		parse_str($request_uri['query']);
 
 		$urlparams['wd'] = urldecode($wd);
-		$urlparams['api'] = isset($api) ? intval($api) : 0;
+		$urlparams['format'] = isset($format) ? strval($format) : '';
 		$urlparams['callback'] = isset($callback) ? strval($callback) : '';
 		$urlparams['p'] = isset($p) ? max($p,1) : 1;
 		
@@ -31,7 +31,7 @@ class SearchAction extends Action
 		$offset = ($urlparams['p']-1)*$page_num;
         $video_list = $service->find_list($urlparams, $offset, $page_num, $total_num, $hc_search);
 
-		if ($urlparams['api'] == 1){
+		if ($urlparams['format'] == 'json'){
 			echo StringTool::gen_jsonp($video_list, $urlparams['callback']);
 			exit;
 		}
