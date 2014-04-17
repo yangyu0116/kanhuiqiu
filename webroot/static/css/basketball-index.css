@@ -258,9 +258,11 @@ body {
 #content .main-content .left-content .hot-video-wrap {
   position: relative;
   width: 196px;
-  height: 670px;
+  height: 1000px;
 }
-#content .main-content .left-content .hot-video-wrap .hot-video-top-title {
+
+#content .main-content .left-content .hot-video-wrap .hot-video-top-title{
+  text-decoration: none;
   font-family: '微软雅黑';
   font-size: 18px;
   color: #dde4ea;
@@ -295,7 +297,7 @@ body {
 }
 #content .main-content .left-content .hot-video-wrap .hot-video-list li a.hot-video-link img {
   width: 120px;
-  heigt: 90px;
+  height: 90px;
   overflow: hidden;
 }
 #content .main-content .left-content .hot-video-wrap .hot-video-list li a.hot-video-title-link {
@@ -366,13 +368,13 @@ body {
 }
 #content .main-content .right-content .left-tab-content .tab-content {
   width: 972px;
-  height: 540px;
+  height: 400px;
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one {
   position: relative;
   width: 972px;
   height: 235px;
-  padding-top: 29px;
+  padding-top: 39px;
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one a.left-control {
   display: block;
@@ -392,6 +394,7 @@ body {
   margin: 0 auto;
   padding-right: 30px;
   margin-right: -29px;
+  overflow: hidden;
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one .video-list-one ul.video-list {
   list-style: none;
@@ -405,7 +408,6 @@ body {
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one .video-list-one ul.video-list li a.video-link {
   display: block;
   width: 158px;
-  height: 142px;
   text-decoration: none;
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one .video-list-one ul.video-list li a.video-title-link {

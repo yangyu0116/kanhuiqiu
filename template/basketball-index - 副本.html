@@ -110,11 +110,8 @@
 </div>
 <div class="right-content">
 <div class="left-tab-content">
-
-	{% foreach item=video from=$video_list %}
-
     <div class="tab-nav">
-        <a class="left-active-nav">{% $video.wd %}</a>
+        <a class="left-active-nav">推荐视频</a>
         <span></span>
         <a class="tab-nav-more">更多>></a>
     </div>
@@ -125,29 +122,52 @@
 
             <div class="video-list-one">
                 <ul class="video-list">
-				{% foreach item=v from=$video.videos %}
                     <li class="item">
                         <a class="video-link" href="#">
-                            <img src="{% $v.pic %}"/>
+                            <img src="./imgs/index-video.png"/>
                         </a>
                         <a class="video-title-link" href="#">
-                            {% $v.title %}
+                            鹈鹕三加时胜公牛集锦霍利迪2.6秒制胜一投
                         </a>
 
                         <div class="data-praise-information">
-                            <span class="data">{% $v.date %}</span>
-                            <!--<a class="red-heart" href="#">5352</a>-->
+                            <span class="data">2013-12-03</span>
+                            <a class="red-heart" href="#">5352</a>
                         </div>
                     </li>
-					{% /foreach %}
                 </ul>
             </div>
             <a class="right-control"></a>
         </div>
         <!-- End video-list-one-->
-    </div>
+        <!-- End video-block-one-->
+        <span class="video-block-spacebar"></span>
 
-	{% /foreach %}
+        <div class="video-block-two ">
+            <a class="left-control"></a>
+
+            <div class="video-list-two">
+                <ul class="video-list">
+                    <li class="item">
+                        <a class="video-link" href="#">
+                            <img src="./imgs/index-video.png"/>
+                        </a>
+                        <a class="video-title-link" href="#">
+                            鹈鹕三加时胜公牛集锦霍利迪2.6秒制胜一投
+                        </a>
+
+                        <div class="data-praise-information">
+                            <span class="data">2013-12-03</span>
+                            <a class="red-heart" href="#">5352</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- End video-list-one-->
+            <a class="right-control"></a>
+        </div>
+        <!-- End video-block-two-->
+    </div>
     <!--End tab-content-->
 </div>
 <!--End left-tab-content-->
