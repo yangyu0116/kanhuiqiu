@@ -9,7 +9,7 @@ class SearchService
         $this->storage = new Storage('kanhuiqiu');
     }
 
-    public function find_list($lst_param, $intOffset, $intNum, &$intResCount, &$hc)
+    public function find_list($lst_param, $intOffset, $intNum, &$intResCount = 0, &$hc = 0)
     {
 
 		if (empty($lst_param['wd'])){
@@ -71,6 +71,7 @@ class SearchService
 		$this->rec_status = $rec_status;
 		
 		$arrList = array();
+		$has_cache = 0;
 		$intOffset = 0;
 		$intNum = SearchConfig::$page_num;
 		$intResCount = 0;
