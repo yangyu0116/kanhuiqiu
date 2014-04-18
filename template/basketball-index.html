@@ -109,10 +109,9 @@
     </div>
 </div>
 <div class="right-content">
+{% if !$valid_wd %}
+{% foreach item=video from=$video_list %}
 <div class="left-tab-content">
-
-	{% foreach item=video from=$video_list %}
-
     <div class="tab-nav">
         <a class="left-active-nav" href="/s?wd={% $video.wd %}" target="_blank">{% $video.wd %}</a>
         <span></span>
@@ -131,13 +130,14 @@
                             <img src="{% $v.pic %}"/>
                         </a>
                         <a class="video-title-link" href="{% $v.url %}" title="{% $v.title %}" target="_blank">
-                            {% $v.title %}
+                            [{% $v.date %}]{% $v.title %}
                         </a>
-
+						<!--
                         <div class="data-praise-information">
-                            <span class="data">{% $v.date %}</span>
-                            <!--<a class="red-heart" href="#">5352</a>-->
+                            <span class="data"></span>
+                            <a class="red-heart" href="#">5352</a>
                         </div>
+						-->
                     </li>
 					{% /foreach %}
                 </ul>
@@ -146,11 +146,48 @@
         </div>
         <!-- End video-list-one-->
     </div>
-	{% /foreach %}
-    <!--End tab-content-->
+	<!--End tab-content-->
+	<p></p>
 </div>
+{% /foreach %}
 <!--End left-tab-content-->
-
+{% else %}
+	{% foreach item=video from=$video_list %}
+		{% if $video.videos %}
+		<div class="left-tab-content">
+			<div class="tab-nav">
+				<a class="left-active-nav" href="/s?wd={% $video.wd %}" target="_blank">{% $video.wd %}</a>
+				<span></span>
+				<a class="tab-nav-more" href="/s?wd={% $video.wd %}" target="_blank">更多>></a>
+			</div>
+			<!-- End tab-nav-->
+			<div class="tab-content">
+				<div class="video-block-one-single">
+					<div class="video-list-one">
+						<ul class="video-list">
+						{% foreach item=v name=v from=$video.videos %}
+							{% if $smarty.foreach.v.index<20 %}
+							<li class="item">
+								<a class="video-link" href="{% $v.url %}" title="{% $v.title %}" target="_blank">
+									<img src="{% $v.pic %}"/>
+								</a>
+								<a class="video-title-link" href="{% $v.url %}" title="{% $v.title %}" target="_blank">
+									[{% $v.date %}]{% $v.title %}
+								</a>
+							</li>
+							{% /if %}
+							{% /foreach %}
+						</ul>
+					</div>
+				</div>
+				<!-- End video-list-one-->
+			</div>
+			<!--End tab-content-->
+			<p></p>
+		</div>
+		{% /if %}
+	{% /foreach %}
+{% /if %}
 <div class="recent-match">
 	<!--
     <div class="match today-match">

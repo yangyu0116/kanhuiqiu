@@ -45,6 +45,7 @@ class SearchService
 
 		if ($arrList){
 			foreach ($arrList as &$l){
+				$l['date'] = ltrim($l['date'], '0');
 				$l['date'] = date("Y", GlobalConfig::$timestamp) == $l['year'] ? $l['date'] : $l['year'].'年'.$l['date'];
 			}
 		}
