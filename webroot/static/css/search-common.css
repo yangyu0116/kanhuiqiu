@@ -189,8 +189,8 @@ body {
 }
 #main #content .search-result-video ul.result-video-list li.item a.video-link {
   display: block;
-  width: 120px;
-  height: 90px;
+  width: 180px;
+  height:135px;
   text-decoration: none;
 }
 #main #content .search-result-video ul.result-video-list li.item a.video-title-link {

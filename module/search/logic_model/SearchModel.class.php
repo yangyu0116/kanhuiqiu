@@ -10,7 +10,7 @@ class SearchModel extends BaseModel
 		}
 
 		if ($_SERVER['HTTP_HOST'] == 'k'){
-			$sql = 'select SQL_CALC_FOUND_ROWS title,url,pic,year,date from tbl_video where title like "%'.$word.'%" order by id desc limit '.$intOffset.','.$intNum.' ';
+			$sql = 'select SQL_CALC_FOUND_ROWS title,type,url,pic,createtime from tbl_video where title like "%'.$word.'%" order by id desc limit '.$intOffset.','.$intNum.' ';
 			$result = $this->do_sql($sql);
 
 			$res2 = $this->do_sql('SELECT FOUND_ROWS() as total');
@@ -64,7 +64,7 @@ class SearchModel extends BaseModel
 			$id_arr[] = $r['id'];
 		}
 		$id_str = implode(',',$id_arr);
-		$sql = 'select title,url,pic,year,date from tbl_video where id in ('.$id_str.') ORDER BY find_in_set(id, "'.$id_str.'")';
+		$sql = 'select title,type,url,pic,createtime from tbl_video where id in ('.$id_str.') ORDER BY find_in_set(id, "'.$id_str.'")';
 		$res = $this->do_sql($sql);
 
 		return $res;

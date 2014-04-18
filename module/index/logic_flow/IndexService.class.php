@@ -34,10 +34,9 @@ class IndexService
     public function recommend_list()
     {
         $recommend_array = array(
-			'官方综述',
-			'比赛集锦',
-			'比赛录播',
-			'官方最佳',
+			'官方',
+			'集锦',
+			'录播',
 			'5佳球'
 		);
 		
