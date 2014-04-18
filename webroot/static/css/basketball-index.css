@@ -409,7 +409,7 @@ a {
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one .video-list-one ul.video-list li {
   float: left;
-  margin-right: 30px;
+  margin-left: 30px;
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one .video-list-one ul.video-list li a.video-link {
   display: block;
@@ -471,7 +471,7 @@ a {
 
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one-single{
   width: 972px;
-  height: 650px;
+  height: 850px;
   padding-top: 39px;
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one-single a.left-control {
@@ -502,7 +502,7 @@ a {
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one-single .video-list-one ul.video-list li {
   float: left;
   margin-bottom: 40px;
-  margin-right: 30px;
+  margin-right: 70px;
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one-single .video-list-one ul.video-list li a.video-link {
   display: block;
@@ -510,7 +510,7 @@ a {
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one-single .video-list-one ul.video-list li a.video-title-link {
   display: block;
-  width: 130px;
+  width: 150px;
   height: 34px;
   font-family: '宋体';
   font-size: 12px;

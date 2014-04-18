@@ -45,7 +45,7 @@ class SearchService
 
 		if ($arrList){
 			foreach ($arrList as &$l){
-				$l['date'] = date("n月d日", $l['createtime']);
+				$l['date'] = (date('Y',GlobalConfig::$timestamp)==date('Y', $l['createtime'])) ? date("n月d日", $l['createtime']) : date("Y年m月d日", $l['createtime']);
 				//$l['date'] = date("Y", GlobalConfig::$timestamp) == $l['year'] ? $l['date'] : $l['year'].'年'.$l['date'];
 			}
 		}

@@ -166,13 +166,13 @@
 					<div class="video-list-one">
 						<ul class="video-list">
 						{% foreach item=v name=v from=$video.videos %}
-							{% if $smarty.foreach.v.index<20 %}
+							{% if $smarty.foreach.v.index<16 %}
 							<li class="item">
 								<a class="video-link" href="{% $v.url %}" title="{% $v.title %}" target="_blank">
 									<img src="{% $v.pic %}"/>
 								</a>
 								<a class="video-title-link" href="{% $v.url %}" title="{% $v.title %}" target="_blank">
-									[{% $v.date %}]{% $v.title %}
+									【{% $v.date %}】{% $v.title %}
 								</a>
 							</li>
 							{% /if %}

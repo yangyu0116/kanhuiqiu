@@ -35,8 +35,8 @@ class IndexService
     {
         $recommend_array = array(
 			'官方',
-			'集锦',
-			'录播',
+			'比赛集锦',
+			'比赛录播',
 			'5佳球'
 		);
 		

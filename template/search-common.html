@@ -18,17 +18,14 @@
             <ul class="result-video-list">
 			{% foreach item=video from=$video_list %}
                 <li class="item video-item1">
-                    <a class="video-link" href="{% $video.url %}" target="_blank">
-                        <img src="{% $video.pic %}"/>
-                    </a>
-                    <a class="video-title-link" href="{% $video.url %}" target="_blank">
-                        {% $video.title %}
-                    </a>
-
+                    <a class="video-link" href="{% $video.url %}" target="_blank"><img src="{% $video.pic %}"/></a>
+                    <a class="video-title-link" href="{% $video.url %}" target="_blank">【{% $video.date %}】{% $video.title %}</a>
+					<!--
                     <div class="data-praise-information">
                         <span class="data">{% $video.date %}</span>
-                        <!--<a class="red-heart" href="#">5352</a>-->
+                        <a class="red-heart" href="#">5352</a>
                     </div>
+					-->
                 </li>
 				{% /foreach %}
             </ul>

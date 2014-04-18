@@ -14,5 +14,5 @@ SearchConfig::$cache_config = array(
     'cache_expire_time' => 600,
 );
 
-SearchConfig::$page_num = 24;
+SearchConfig::$page_num = 20;
 SearchConfig::$tpl_name = 'search-common.html';
