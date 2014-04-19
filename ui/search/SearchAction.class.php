@@ -8,6 +8,7 @@ class SearchAction extends Action
 		parse_str($request_uri['query']);
 
 		$urlparams['wd'] = urldecode($wd);
+		$urlparams['wd'] = strlen($urlparams['wd']) > 30 ? substr($urlparams['wd'],0,30) : $urlparams['wd'];
 		$urlparams['format'] = isset($format) ? strval($format) : '';
 		$urlparams['callback'] = isset($callback) ? strval($callback) : '';
 		$urlparams['p'] = isset($p) ? max($p,1) : 1;
