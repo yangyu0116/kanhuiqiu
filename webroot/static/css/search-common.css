@@ -185,7 +185,7 @@ body {
   height: 180px;
   overflow: hidden;
   margin-right: 34px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   float: left;
 }
 #main #content .search-result-video ul.result-video-list li.item a.video-link {
@@ -203,7 +203,7 @@ body {
   font-family: '宋体';
   font-size: 12px;
   line-height: 18px;
-  color: #6b6a6a;
+  color: #0066A2;
 }
 #main #content .search-result-video ul.result-video-list li.item .data-praise-information {
   width: 120px;

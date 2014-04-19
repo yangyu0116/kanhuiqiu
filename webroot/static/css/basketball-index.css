@@ -378,14 +378,14 @@ a {
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one{
   position: relative;
   width: 972px;
-  height: 150px;
+  height: 190px;
   padding-top: 39px;
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one a.left-control {
   display: block;
   position: absolute;
-  left: 4px;
-  top: 59px;
+  left: 10px;
+  top: 79px;
   width: 22px;
   height: 22px;
   background: url("/static/imgs/basketball-icon.png") no-repeat -700px -100px;
@@ -404,12 +404,12 @@ a {
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one .video-list-one ul.video-list {
   list-style: none;
-  padding: 0;
   margin: 0;
+  margin-left: -85px;
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one .video-list-one ul.video-list li {
   float: left;
-  margin-left: 30px;
+  margin-left: 50px;
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one .video-list-one ul.video-list li a.video-link {
   display: block;
@@ -417,13 +417,13 @@ a {
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one .video-list-one ul.video-list li a.video-title-link {
   display: block;
-  width: 130px;
+  width: 180px;
   height: 34px;
   margin-top: 10px;
   font-family: '宋体';
   font-size: 12px;
   line-height: 18px;
-  color: #6b6a6a;
+  color: #0066A2;
 }
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one .video-list-one ul.video-list li .data-praise-information {
   width: 158px;
@@ -451,8 +451,8 @@ a {
 #content .main-content .right-content .left-tab-content .tab-content .video-block-one a.right-control {
   display: block;
   position: absolute;
-  right: 4px;
-  top: 59px;
+  right: 10px;
+  top: 79px;
   width: 22px;
   height: 22px;
   background: url("/static/imgs/basketball-icon.png") no-repeat -600px -100px;
