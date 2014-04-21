@@ -34,7 +34,7 @@ class IndexService
     public function recommend_list()
     {
         $recommend_array = array(
-			'date("d日", strtotime("yesterday")),',
+			date("d日官方", strtotime("yesterday")),
 			'官方',
 			'比赛集锦',
 			'5佳球'
