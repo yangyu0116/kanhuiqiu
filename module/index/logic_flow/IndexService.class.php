@@ -32,16 +32,10 @@ class IndexService
     }
 
     public function recommend_list()
-    {
-        $recommend_array = array(
-			date("d日官方", strtotime("yesterday")),
-			'比赛集锦',
-			'5佳球'
-		);
-		
+    {	
 		$search_list = array();
-		foreach ($recommend_array as $k => $rec){
-			$search_list[$k]['wd'] = $rec;
+		foreach (IndexConfig::$recommend_array as $k => $rec){
+			$search_list[$k]['wd'] = $rec['wd'];
 		}
 
 		$search_service = new SearchService();
