@@ -80,10 +80,12 @@ class Session
 	}
 
 	public static function get_secure(){
+		return false;
+		/*
 		$https = array();
 		$_SERVER['REQUEST_URI'] && $https = @parse_url($_SERVER['REQUEST_URI']);
 		if (empty($https['scheme'])) {
-			if ($_SERVER['HTTP_SCHEME']) {
+			if (isset($_SERVER['HTTP_SCHEME'])) {
 				$https['scheme'] = $_SERVER['HTTP_SCHEME'];
 			} else {
 				$https['scheme'] = ($_SERVER['HTTPS'] && strtolower($_SERVER['HTTPS']) != 'off') ? 'https' : 'http';
@@ -93,6 +95,7 @@ class Session
 			return true;
 		}
 		return false;
+		*/
 	}
 
 	
