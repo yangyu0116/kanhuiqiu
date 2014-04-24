@@ -50,7 +50,7 @@ class Session
 
 		$timestamp = GlobalConfig::$timestamp;
 		$db_ckpath = '/';
-		$db_ckdomain = $_SERVER['HTTP_HOST'];
+		$db_ckdomain = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
 		/*
 		if ($_SERVER['HTTP_HOST'] == 'k') {
 			$db_ckpath = '/';

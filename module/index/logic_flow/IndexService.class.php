@@ -35,7 +35,6 @@ class IndexService
     {
         $recommend_array = array(
 			date("d日官方", strtotime("yesterday")),
-			'官方',
 			'比赛集锦',
 			'5佳球'
 		);
@@ -46,7 +45,7 @@ class IndexService
 		}
 
 		$search_service = new SearchService();
-		$video_list = $search_service->find_list_by_array($search_list, true);
+		$video_list = $search_service->find_list_by_array($search_list, false);
 
 		return $video_list;
     }

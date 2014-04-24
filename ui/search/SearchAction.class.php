@@ -30,7 +30,8 @@ class SearchAction extends Action
         $page_num = SearchConfig::$page_num;
 		$total_num = 0;
 		$offset = ($urlparams['p']-1)*$page_num;
-        $video_list = $service->find_list($urlparams, $offset, $page_num, $total_num, $hc_search);
+		$rec_status = empty($urlparams['format']) ? true : false;
+        $video_list = $service->find_list($urlparams, $offset, $page_num, $total_num, $hc_search, $rec_status);
 
 		if ($urlparams['format'] == 'json'){
 			echo StringTool::gen_jsonp($video_list, $urlparams['callback']);

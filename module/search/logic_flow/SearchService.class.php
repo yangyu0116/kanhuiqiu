@@ -9,7 +9,7 @@ class SearchService
         $this->storage = new Storage('kanhuiqiu');
     }
 
-    public function find_list($lst_param, $intOffset, $intNum, &$intResCount = 0, &$hc = 0)
+    public function find_list($lst_param, $intOffset, $intNum, &$intResCount = 0, &$hc = 0, $rec_status = false)
     {
 
 		if (empty($lst_param['wd'])){
@@ -20,7 +20,7 @@ class SearchService
         $arrList = $m_search->find_list($lst_param, $intOffset, $intNum, $intResCount);
 
 		$userinfo = Session::check_login();
-		if ($userinfo && !$this->rec_status){
+		if ($userinfo && $rec_status){
 			$m_user = new UserModel(UserConfig::$cache_config, $this->storage->db, null);
 			$search_list = $m_user->find_user_search_list($userinfo['uid']);
 
@@ -67,8 +67,6 @@ class SearchService
 		if (!is_array($lst_param) || empty($lst_param)){
 			return false;
 		}
-
-		$this->rec_status = $rec_status;
 		
 		$arrList = array();
 		$has_cache = 0;
@@ -79,7 +77,7 @@ class SearchService
 
 			$tmp = array();
 			$tmp['wd'] = $param['wd'];
-			$tmp['videos'] = $this->find_list($param, $intOffset, $intNum, $intResCount);
+			$tmp['videos'] = $this->find_list($param, $intOffset, $intNum, $intResCount, $has_cache, $rec_status);
 
 			$arrList[] = $tmp;
 		}
