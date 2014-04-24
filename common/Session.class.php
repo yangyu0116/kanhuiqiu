@@ -50,6 +50,8 @@ class Session
 
 		$timestamp = GlobalConfig::$timestamp;
 		$db_ckpath = '/';
+		$db_ckdomain = $_SERVER['HTTP_HOST'];
+		/*
 		if ($_SERVER['HTTP_HOST'] == 'k') {
 			$db_ckpath = '/';
 			$db_ckdomain = '';
@@ -63,6 +65,7 @@ class Session
 				//}
 			}
 		}
+		*/
 		if ($ck_time=='F') {
 			$ck_time = $timestamp+31536000;	//1 year
 		} else {
