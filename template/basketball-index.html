@@ -111,6 +111,7 @@
 <div class="right-content">
 {% if !$valid_wd %}
 {% foreach item=video from=$video_list %}
+{% if $video.videos %}
 <div class="left-tab-content">
     <div class="tab-nav">
         <a class="left-active-nav" href="/s?wd={% $video.wd %}" target="_blank">{% $video.wd %}</a>
@@ -149,6 +150,7 @@
 	<!--End tab-content-->
 	<p></p>
 </div>
+{% /if %}
 {% /foreach %}
 <!--End left-tab-content-->
 {% else %}
