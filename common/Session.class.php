@@ -27,13 +27,14 @@ class Session
 
 			$uid = GlobalConfig::$timestamp.rand(0,1000);
 
-			$storage = new Storage('kanhuiqiu');
-			$m_user = new UserModel(UserConfig::$cache_config, $storage->db, null);
-			$m_user->add_cookie_user($uid);
-
 			//$cookie_val = self::str_code($uid,'ENCODE');
 			$cookie_val = self::_encrypt($uid);
-			self::set_cookie('user', $cookie_val);
+			$cookie_set_exec = self::set_cookie('user', $cookie_val);
+			if ($cookie_set_exec){
+				$storage = new Storage($_SERVER['DB_NAME']);
+				$m_user = new UserModel(UserConfig::$cache_config, $storage->db, null);
+				$m_user->add_cookie_user($uid);
+			}
 		}
 
 		$userinfo['uid'] = $uid;
@@ -77,9 +78,10 @@ class Session
 		
 		if ($cookie_exec){
 			$_COOKIE[self::$cookie_pre.$ck_var] = $ck_value;
+			return true;
 		}
 		
-		return true;
+		return false;
 	}
 
 	public static function get_secure(){
