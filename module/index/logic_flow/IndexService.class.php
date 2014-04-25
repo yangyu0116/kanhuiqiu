@@ -41,6 +41,10 @@ class IndexService
 		$search_service = new SearchService();
 		$video_list = $search_service->find_list_by_array($search_list, false);
 
+		if (empty($video_list)){
+			$video_list = false;
+		}
+
 		return $video_list;
     }
 
