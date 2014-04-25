@@ -72,13 +72,6 @@ class IndexAction extends Action
 			}
 
 		}
-
-		if (isset($_GET['db'])){
-			echo '<pre>';
-			print_r ($video_list);
-			echo '</pre>';
-			exit;   //debug-------------------	
-		}
  
         $tpl = SimpleTemplate::getInstance();
 
