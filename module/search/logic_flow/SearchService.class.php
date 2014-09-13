@@ -46,7 +46,7 @@ class SearchService
 		if ($arrList){
 			foreach ($arrList as &$l){
 				$l['date'] = (date('Y',GlobalConfig::$timestamp)==date('Y', $l['createtime'])) ? date("n月d日", $l['createtime']) : date("Y年m月d日", $l['createtime']);
-				$l['url']  = SearchConfig::$video_url_pre . str_replace(array('6-','-1'),'', $l['source_id']);
+				//$l['url']  = SearchConfig::$video_url_pre . str_replace(array('6-','-1'),'', $l['source_id']);
 			}
 		}
 	
