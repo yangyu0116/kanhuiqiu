@@ -16,3 +16,5 @@ SearchConfig::$cache_config = array(
 
 SearchConfig::$page_num = 20;
 SearchConfig::$tpl_name = 'search-common.html';
+
+SearchConfig::$video_url_pre = 'http://you.video.sina.com.cn/api/sinawebApi/outplayrefer.php/vid=';
