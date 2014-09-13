@@ -1,2 +1,0 @@
-ALTER TABLE `tbl_video` ADD `createtime` INT(10) NOT NULL AFTER `pic`;
-ALTER TABLE `tbl_video` ADD `type` CHAR(2) NOT NULL AFTER `title`;
