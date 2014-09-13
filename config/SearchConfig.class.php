@@ -4,6 +4,7 @@ class SearchConfig
     public static $cache_config;
 	public static $page_num;
 	public static $tpl_name;
+	public static $video_url_pre;
 }
 
 //cache配置
